@@ -6,6 +6,7 @@
   "private": true,
   "scripts": {
     "build": "pnpm --recursive run build",
+    "build:api": "pnpm --filter @zinzot/db --filter @zinzot/contracts --filter @zinzot/api run build",
     "dev": "pnpm --filter @zinzot/api run dev",
     "db:push": "pnpm --filter @zinzot/db run db:push",
     "db:migrate": "pnpm --filter @zinzot/db run db:migrate",
