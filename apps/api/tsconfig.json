@@ -7,7 +7,7 @@
     "moduleResolution": "nodenext",
     "baseUrl": ".",
     "paths": {
-      "@zinzot/*": ["../../packages/*/src"]
+      "@zinzot/*": ["../../packages/*/dist"]
     },
     "skipLibCheck": true,
     "esModuleInterop": true,
