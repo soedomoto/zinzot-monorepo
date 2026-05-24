@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+:host {
+  /* 1. Break out of 'static' so z-index actually triggers */
+  position: fixed !important; 
+  
+  /* 2. Anchor it where you want it on the screen */
+  top: 20px;
+  right: 20px;
+  
+  /* 3. Force it to the absolute top layer */
+  z-index: 2147483647 !important; 
+}

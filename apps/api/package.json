@@ -1,0 +1,34 @@
+{
+  "name": "@zinzot/api",
+  "version": "1.0.0",
+  "description": "API server with multiple adapters",
+  "main": "dist/adapters/standalone.js",
+  "scripts": {
+    "dev": "tsx watch ./src/adapters/standalone.ts",
+    "build": "tsc",
+    "start": "node dist/adapters/standalone.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@fastify/cors": "^11.2.0",
+    "@trpc/server": "^11.17.0",
+    "@zinzot/contracts": "workspace:*",
+    "@zinzot/db": "workspace:*",
+    "comctx": "^1.6.1",
+    "cors": "^2.8.6",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
+    "tailwindcss": "^4.3.0",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/node": "^25.8.0",
+    "fastify": "^5.8.5",
+    "tsx": "^4.22.0",
+    "typescript": "^5.9.3"
+  }
+}

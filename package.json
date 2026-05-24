@@ -1,0 +1,19 @@
+{
+  "name": "zinzot",
+  "version": "1.0.0",
+  "description": "Monorepo with Prisma, tRPC, and multi-adapter API server",
+  "packageManager": "pnpm@11.1.2",
+  "private": true,
+  "scripts": {
+    "build": "pnpm --recursive run build",
+    "dev": "pnpm --filter @zinzot/api run dev",
+    "db:push": "pnpm --filter @zinzot/db run db:push",
+    "db:migrate": "pnpm --filter @zinzot/db run db:migrate",
+    "db:generate": "pnpm --filter @zinzot/db run db:generate",
+    "db:studio": "pnpm --filter @zinzot/db run db:studio"
+  },
+  "dependencies": {
+    "@tailwindcss/postcss": "^4.3.0",
+    "typescript-eslint": "^8.59.3"
+  }
+}

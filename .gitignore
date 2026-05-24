@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+
+# Build & outputs
+dist/
+build/
+.wxt/
+.output/
+.vite/
+
+# Caches
+tsconfig.tsbuildinfo
+.eslintcache
+
+# Environment
+.env
+.env.local
+.env.*
+!.env.example
+
+# Logs
+*.log
+pnpm-debug.log*
+
+# OS & Editor
+.DS_Store
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+!.vscode/launch.json

@@ -1,0 +1,1371 @@
+import t0, {functions as t0_functions} from './translators-zoterobib.ts';
+import t1, {functions as t1_functions} from './translators-zotero-org.ts';
+import t2, {functions as t2_functions} from './translators-zobodat.ts';
+import t3, {functions as t3_functions} from './translators-ziponline.ts';
+import t4, {functions as t4_functions} from './translators-zbmath.ts';
+import t5, {functions as t5_functions} from './translators-ypfs.ts';
+import t6, {functions as t6_functions} from './translators-youtube.ts';
+import t7, {functions as t7_functions} from './translators-ynet.ts';
+import t8, {functions as t8_functions} from './translators-yandex-books.ts';
+import t9, {functions as t9_functions} from './translators-worldcat-discovery-service.ts';
+import t10, {functions as t10_functions} from './translators-world-shakespeare-bibliography-online.ts';
+import t11, {functions as t11_functions} from './translators-world-history-connected.ts';
+import t12, {functions as t12_functions} from './translators-world-digital-library.ts';
+import t13, {functions as t13_functions} from './translators-womennews.ts';
+import t14, {functions as t14_functions} from './translators-wiso.ts';
+import t15, {functions as t15_functions} from './translators-wired.ts';
+import t16, {functions as t16_functions} from './translators-wipo.ts';
+import t17, {functions as t17_functions} from './translators-winnipeg-free-press.ts';
+import t18, {functions as t18_functions} from './translators-wilson-center-digital-archive.ts';
+import t19, {functions as t19_functions} from './translators-wiley-online-library.ts';
+import t20, {functions as t20_functions} from './translators-wildlife-biology-in-practice.ts';
+import t21, {functions as t21_functions} from './translators-wiktionary.ts';
+import t22, {functions as t22_functions} from './translators-wikiwand.ts';
+import t23, {functions as t23_functions} from './translators-wikisource.ts';
+import t24, {functions as t24_functions} from './translators-wikipedia.ts';
+import t25, {functions as t25_functions} from './translators-wikimedia-commons.ts';
+import t26, {functions as t26_functions} from './translators-wikileaks-plusd.ts';
+import t27, {functions as t27_functions} from './translators-wikidata.ts';
+import t28, {functions as t28_functions} from './translators-wikidata-quickstatements.ts';
+import t29, {functions as t29_functions} from './translators-who.ts';
+import t30, {functions as t30_functions} from './translators-westlaw-uk.ts';
+import t31, {functions as t31_functions} from './translators-welt-online.ts';
+import t32, {functions as t32_functions} from './translators-web-of-science.ts';
+import t33, {functions as t33_functions} from './translators-web-of-science-tagged.ts';
+import t34, {functions as t34_functions} from './translators-web-of-science-nextgen.ts';
+import t35, {functions as t35_functions} from './translators-washington-post.ts';
+import t36, {functions as t36_functions} from './translators-washington-monthly.ts';
+import t37, {functions as t37_functions} from './translators-wanfang-data.ts';
+import t38, {functions as t38_functions} from './translators-wall-street-journal.ts';
+import t39, {functions as t39_functions} from './translators-voxeu.ts';
+import t40, {functions as t40_functions} from './translators-vimeo.ts';
+import t41, {functions as t41_functions} from './translators-victoria-albert-museum.ts';
+import t42, {functions as t42_functions} from './translators-vice.ts';
+import t43, {functions as t43_functions} from './translators-verso-books.ts';
+import t44, {functions as t44_functions} from './translators-verniana-jules-verne-studies.ts';
+import t45, {functions as t45_functions} from './translators-vanity-fair.ts';
+import t46, {functions as t46_functions} from './translators-us-national-archives-research-catalog.ts';
+import t47, {functions as t47_functions} from './translators-uptodate-references.ts';
+import t48, {functions as t48_functions} from './translators-upcommons.ts';
+import t49, {functions as t49_functions} from './translators-unz-print-archive.ts';
+import t50, {functions as t50_functions} from './translators-university-press-scholarship.ts';
+import t51, {functions as t51_functions} from './translators-university-of-wisconsin-madison-libraries-catalog.ts';
+import t52, {functions as t52_functions} from './translators-university-of-chicago-press-books.ts';
+import t53, {functions as t53_functions} from './translators-university-of-california-press-books.ts';
+import t54, {functions as t54_functions} from './translators-uchicago-vufind.ts';
+import t55, {functions as t55_functions} from './translators-twitter.ts';
+import t56, {functions as t56_functions} from './translators-tvnz.ts';
+import t57, {functions as t57_functions} from './translators-tv-by-the-numbers.ts';
+import t58, {functions as t58_functions} from './translators-tumblr.ts';
+import t59, {functions as t59_functions} from './translators-trove.ts';
+import t60, {functions as t60_functions} from './translators-treesearch.ts';
+import t61, {functions as t61_functions} from './translators-transportation-research-board.ts';
+import t62, {functions as t62_functions} from './translators-toronto-star.ts';
+import t63, {functions as t63_functions} from './translators-tony-blair-institute-for-global-change.ts';
+import t64, {functions as t64_functions} from './translators-timesmachine.ts';
+import t65, {functions as t65_functions} from './translators-time-com.ts';
+import t66, {functions as t66_functions} from './translators-thieme.ts';
+import t67, {functions as t67_functions} from './translators-theory-of-computing.ts';
+import t68, {functions as t68_functions} from './translators-themarker.ts';
+import t69, {functions as t69_functions} from './translators-the-times-of-israel.ts';
+import t70, {functions as t70_functions} from './translators-the-times-and-sunday-times.ts';
+import t71, {functions as t71_functions} from './translators-the-telegraph.ts';
+import t72, {functions as t72_functions} from './translators-the-straits-times.ts';
+import t73, {functions as t73_functions} from './translators-the-open-library.ts';
+import t74, {functions as t74_functions} from './translators-the-new-yorker.ts';
+import t75, {functions as t75_functions} from './translators-the-new-york-review-of-books.ts';
+import t76, {functions as t76_functions} from './translators-the-new-republic.ts';
+import t77, {functions as t77_functions} from './translators-the-national-archives-uk.ts';
+import t78, {functions as t78_functions} from './translators-the-nation.ts';
+import t79, {functions as t79_functions} from './translators-the-microfinance-gateway.ts';
+import t80, {functions as t80_functions} from './translators-the-met.ts';
+import t81, {functions as t81_functions} from './translators-the-intercept.ts';
+import t82, {functions as t82_functions} from './translators-the-independent.ts';
+import t83, {functions as t83_functions} from './translators-the-hindu.ts';
+import t84, {functions as t84_functions} from './translators-the-hamilton-spectator.ts';
+import t85, {functions as t85_functions} from './translators-the-guardian.ts';
+import t86, {functions as t86_functions} from './translators-the-globe-and-mail.ts';
+import t87, {functions as t87_functions} from './translators-the-free-dictionary.ts';
+import t88, {functions as t88_functions} from './translators-the-economist.ts';
+import t89, {functions as t89_functions} from './translators-the-economic-times-the-times-of-india.ts';
+import t90, {functions as t90_functions} from './translators-the-daily-beast.ts';
+import t91, {functions as t91_functions} from './translators-the-chronicle-of-higher-education.ts';
+import t92, {functions as t92_functions} from './translators-the-boston-globe.ts';
+import t93, {functions as t93_functions} from './translators-the-atlantic.ts';
+import t94, {functions as t94_functions} from './translators-the-art-newspaper.ts';
+import t95, {functions as t95_functions} from './translators-tesis-doctorals-en-xarxa.ts';
+import t96, {functions as t96_functions} from './translators-taz-de.ts';
+import t97, {functions as t97_functions} from './translators-taylor-francis-ebooks.ts';
+import t98, {functions as t98_functions} from './translators-taylor-and-francis-nejm.ts';
+import t99, {functions as t99_functions} from './translators-tatpressa-ru.ts';
+import t100, {functions as t100_functions} from './translators-tatknigafund.ts';
+import t101, {functions as t101_functions} from './translators-talisprism.ts';
+import t102, {functions as t102_functions} from './translators-talis-aspire.ts';
+import t103, {functions as t103_functions} from './translators-tagesspiegel.ts';
+import t104, {functions as t104_functions} from './translators-svt-nyheter.ts';
+import t105, {functions as t105_functions} from './translators-sveriges-radio.ts';
+import t106, {functions as t106_functions} from './translators-svenska-dagbladet.ts';
+import t107, {functions as t107_functions} from './translators-superlib.ts';
+import t108, {functions as t108_functions} from './translators-summon-2.ts';
+import t109, {functions as t109_functions} from './translators-sueddeutsche-de.ts';
+import t110, {functions as t110_functions} from './translators-sud-ouest.ts';
+import t111, {functions as t111_functions} from './translators-substack.ts';
+import t112, {functions as t112_functions} from './translators-stuff-co-nz.ts';
+import t113, {functions as t113_functions} from './translators-store-norske-leksikon.ts';
+import t114, {functions as t114_functions} from './translators-stitcher.ts';
+import t115, {functions as t115_functions} from './translators-state-records-office-of-western-australia.ts';
+import t116, {functions as t116_functions} from './translators-stanford-university-press.ts';
+import t117, {functions as t117_functions} from './translators-standard-ebooks.ts';
+import t118, {functions as t118_functions} from './translators-stack-exchange.ts';
+import t119, {functions as t119_functions} from './translators-ssrn.ts';
+import t120, {functions as t120_functions} from './translators-ssoar.ts';
+import t121, {functions as t121_functions} from './translators-springer-link.ts';
+import t122, {functions as t122_functions} from './translators-sora.ts';
+import t123, {functions as t123_functions} from './translators-slub-dresden.ts';
+import t124, {functions as t124_functions} from './translators-slideshare.ts';
+import t125, {functions as t125_functions} from './translators-slate.ts';
+import t126, {functions as t126_functions} from './translators-sirs-knowledge-source.ts';
+import t127, {functions as t127_functions} from './translators-sipri.ts';
+import t128, {functions as t128_functions} from './translators-silverchair.ts';
+import t129, {functions as t129_functions} from './translators-sfu-ipinch.ts';
+import t130, {functions as t130_functions} from './translators-semantics-visual-library.ts';
+import t131, {functions as t131_functions} from './translators-semantic-scholar.ts';
+import t132, {functions as t132_functions} from './translators-scopus.ts';
+import t133, {functions as t133_functions} from './translators-scinapse.ts';
+import t134, {functions as t134_functions} from './translators-sciencedirect.ts';
+import t135, {functions as t135_functions} from './translators-scielo.ts';
+import t136, {functions as t136_functions} from './translators-schweizer-radio-und-fernsehen-srf.ts';
+import t137, {functions as t137_functions} from './translators-scholia.ts';
+import t138, {functions as t138_functions} from './translators-scholars-portal-journals.ts';
+import t139, {functions as t139_functions} from './translators-sbn-it.ts';
+import t140, {functions as t140_functions} from './translators-salt-research-archives.ts';
+import t141, {functions as t141_functions} from './translators-saildart.ts';
+import t142, {functions as t142_functions} from './translators-sage-knowledge.ts';
+import t143, {functions as t143_functions} from './translators-sage-journals.ts';
+import t144, {functions as t144_functions} from './translators-safari-books-online.ts';
+import t145, {functions as t145_functions} from './translators-sae-papers.ts';
+import t146, {functions as t146_functions} from './translators-sacramento-bee.ts';
+import t147, {functions as t147_functions} from './translators-russian-state-library.ts';
+import t148, {functions as t148_functions} from './translators-rsc-publishing.ts';
+import t149, {functions as t149_functions} from './translators-roll-call.ts';
+import t150, {functions as t150_functions} from './translators-rock-paper-shotgun.ts';
+import t151, {functions as t151_functions} from './translators-reuters.ts';
+import t152, {functions as t152_functions} from './translators-retsinformation.ts';
+import t153, {functions as t153_functions} from './translators-researchgate.ts';
+import t154, {functions as t154_functions} from './translators-research-square.ts';
+import t155, {functions as t155_functions} from './translators-repec-ideas.ts';
+import t156, {functions as t156_functions} from './translators-repec-econpapers.ts';
+import t157, {functions as t157_functions} from './translators-regeringskansliet.ts';
+import t158, {functions as t158_functions} from './translators-reddit.ts';
+import t159, {functions as t159_functions} from './translators-redalyc.ts';
+import t160, {functions as t160_functions} from './translators-rechtspraak-nl.ts';
+import t161, {functions as t161_functions} from './translators-rand.ts';
+import t162, {functions as t162_functions} from './translators-radio-free-europe-radio-liberty.ts';
+import t163, {functions as t163_functions} from './translators-r-packages.ts';
+import t164, {functions as t164_functions} from './translators-queensland-state-archives.ts';
+import t165, {functions as t165_functions} from './translators-qatar-digital-library.ts';
+import t166, {functions as t166_functions} from './translators-pypi.ts';
+import t167, {functions as t167_functions} from './translators-pubpub.ts';
+import t168, {functions as t168_functions} from './translators-pubmed.ts';
+import t169, {functions as t169_functions} from './translators-pubmed-central.ts';
+import t170, {functions as t170_functions} from './translators-publications-office-of-the-european-union.ts';
+import t171, {functions as t171_functions} from './translators-publications-du-qu-bec.ts';
+import t172, {functions as t172_functions} from './translators-public-record-office-victoria.ts';
+import t173, {functions as t173_functions} from './translators-pubfactory-journals.ts';
+import t174, {functions as t174_functions} from './translators-protein-data-bank.ts';
+import t175, {functions as t175_functions} from './translators-proquest.ts';
+import t176, {functions as t176_functions} from './translators-proquest-policyfile.ts';
+import t177, {functions as t177_functions} from './translators-proquest-ebook-central.ts';
+import t178, {functions as t178_functions} from './translators-promed.ts';
+import t179, {functions as t179_functions} from './translators-project-muse.ts';
+import t180, {functions as t180_functions} from './translators-project-gutenberg.ts';
+import t181, {functions as t181_functions} from './translators-probing-the-past.ts';
+import t182, {functions as t182_functions} from './translators-primo.ts';
+import t183, {functions as t183_functions} from './translators-primo-2018.ts';
+import t184, {functions as t184_functions} from './translators-preprints-org.ts';
+import t185, {functions as t185_functions} from './translators-prc-history-review.ts';
+import t186, {functions as t186_functions} from './translators-potsdamer-neueste-nachrichten.ts';
+import t187, {functions as t187_functions} from './translators-polygon.ts';
+import t188, {functions as t188_functions} from './translators-plos-journals.ts';
+import t189, {functions as t189_functions} from './translators-pleade.ts';
+import t190, {functions as t190_functions} from './translators-pkp-catalog-systems.ts';
+import t191, {functions as t191_functions} from './translators-philpapers.ts';
+import t192, {functions as t192_functions} from './translators-philosopher-s-imprint.ts';
+import t193, {functions as t193_functions} from './translators-perlego.ts';
+import t194, {functions as t194_functions} from './translators-perceiving-systems.ts';
+import t195, {functions as t195_functions} from './translators-pep-web.ts';
+import t196, {functions as t196_functions} from './translators-pei-archival-information-network.ts';
+import t197, {functions as t197_functions} from './translators-peeters.ts';
+import t198, {functions as t198_functions} from './translators-pc-games.ts';
+import t199, {functions as t199_functions} from './translators-pc-gamer.ts';
+import t200, {functions as t200_functions} from './translators-patents-uspto.ts';
+import t201, {functions as t201_functions} from './translators-pastebin.ts';
+import t202, {functions as t202_functions} from './translators-paris-review.ts';
+import t203, {functions as t203_functions} from './translators-papers-past.ts';
+import t204, {functions as t204_functions} from './translators-pajhwok-afghan-news.ts';
+import t205, {functions as t205_functions} from './translators-ozon-ru.ts';
+import t206, {functions as t206_functions} from './translators-oxford-university-press.ts';
+import t207, {functions as t207_functions} from './translators-oxford-reference.ts';
+import t208, {functions as t208_functions} from './translators-oxford-music-and-art-online.ts';
+import t209, {functions as t209_functions} from './translators-oxford-english-dictionary.ts';
+import t210, {functions as t210_functions} from './translators-oxford-dictionaries-premium.ts';
+import t211, {functions as t211_functions} from './translators-ovid.ts';
+import t212, {functions as t212_functions} from './translators-ovid-tagged.ts';
+import t213, {functions as t213_functions} from './translators-osti-energy-citations.ts';
+import t214, {functions as t214_functions} from './translators-osf-preprints.ts';
+import t215, {functions as t215_functions} from './translators-orcid.ts';
+import t216, {functions as t216_functions} from './translators-optimization-online.ts';
+import t217, {functions as t217_functions} from './translators-optical-society-of-america.ts';
+import t218, {functions as t218_functions} from './translators-openjur.ts';
+import t219, {functions as t219_functions} from './translators-openedition-journals.ts';
+import t220, {functions as t220_functions} from './translators-openedition-books.ts';
+import t221, {functions as t221_functions} from './translators-openalex.ts';
+import t222, {functions as t222_functions} from './translators-openalex-json.ts';
+import t223, {functions as t223_functions} from './translators-open-worldcat.ts';
+import t224, {functions as t224_functions} from './translators-open-knowledge-repository.ts';
+import t225, {functions as t225_functions} from './translators-open-conf.ts';
+import t226, {functions as t226_functions} from './translators-old-bailey-online.ts';
+import t227, {functions as t227_functions} from './translators-ohiolink.ts';
+import t228, {functions as t228_functions} from './translators-oecd.ts';
+import t229, {functions as t229_functions} from './translators-oclc-worldcat-firstsearch.ts';
+import t230, {functions as t230_functions} from './translators-oapen.ts';
+import t231, {functions as t231_functions} from './translators-nzz-ch.ts';
+import t232, {functions as t232_functions} from './translators-nytimes-com.ts';
+import t233, {functions as t233_functions} from './translators-nypl-research-catalog.ts';
+import t234, {functions as t234_functions} from './translators-nypl-menus.ts';
+import t235, {functions as t235_functions} from './translators-ntsb-accident-reports.ts';
+import t236, {functions as t236_functions} from './translators-nrc-research-press.ts';
+import t237, {functions as t237_functions} from './translators-nrc-nl.ts';
+import t238, {functions as t238_functions} from './translators-npr.ts';
+import t239, {functions as t239_functions} from './translators-notre-dame-philosophical-reviews.ts';
+import t240, {functions as t240_functions} from './translators-noor-digital-library.ts';
+import t241, {functions as t241_functions} from './translators-newspapers-com.ts';
+import t242, {functions as t242_functions} from './translators-newsnet-tamedia.ts';
+import t243, {functions as t243_functions} from './translators-newshub-co-nz.ts';
+import t244, {functions as t244_functions} from './translators-newsbank.ts';
+import t245, {functions as t245_functions} from './translators-news-corp-australia.ts';
+import t246, {functions as t246_functions} from './translators-newlines-magazine.ts';
+import t247, {functions as t247_functions} from './translators-new-zealand-herald.ts';
+import t248, {functions as t248_functions} from './translators-new-left-review.ts';
+import t249, {functions as t249_functions} from './translators-neural-information-processing-systems.ts';
+import t250, {functions as t250_functions} from './translators-ncbi-nucleotide.ts';
+import t251, {functions as t251_functions} from './translators-nature-publishing-group.ts';
+import t252, {functions as t252_functions} from './translators-national-transportation-library-rosa-p.ts';
+import t253, {functions as t253_functions} from './translators-national-technical-reports-library.ts';
+import t254, {functions as t254_functions} from './translators-national-post.ts';
+import t255, {functions as t255_functions} from './translators-national-library-of-norway.ts';
+import t256, {functions as t256_functions} from './translators-national-library-of-belarus.ts';
+import t257, {functions as t257_functions} from './translators-national-library-of-australia-new-catalog.ts';
+import t258, {functions as t258_functions} from './translators-national-gallery-of-australia.ts';
+import t259, {functions as t259_functions} from './translators-national-gallery-of-art-usa.ts';
+import t260, {functions as t260_functions} from './translators-national-diet-library-catalogue.ts';
+import t261, {functions as t261_functions} from './translators-national-bureau-of-economic-research.ts';
+import t262, {functions as t262_functions} from './translators-national-archives-of-south-africa.ts';
+import t263, {functions as t263_functions} from './translators-national-archives-of-australia.ts';
+import t264, {functions as t264_functions} from './translators-national-agriculture-library.ts';
+import t265, {functions as t265_functions} from './translators-national-academies-press.ts';
+import t266, {functions as t266_functions} from './translators-nasa-ntrs.ts';
+import t267, {functions as t267_functions} from './translators-nasa-ads.ts';
+import t268, {functions as t268_functions} from './translators-nagoya-university-opac.ts';
+import t269, {functions as t269_functions} from './translators-mus-e-du-louvre.ts';
+import t270, {functions as t270_functions} from './translators-mpg-pure.ts';
+import t271, {functions as t271_functions} from './translators-mit-press-books.ts';
+import t272, {functions as t272_functions} from './translators-milli-k-t-phane.ts';
+import t273, {functions as t273_functions} from './translators-mikromarc.ts';
+import t274, {functions as t274_functions} from './translators-midas-journals.ts';
+import t275, {functions as t275_functions} from './translators-microsoft-academic.ts';
+import t276, {functions as t276_functions} from './translators-microbiology-society-journals.ts';
+import t277, {functions as t277_functions} from './translators-metalib.ts';
+import t278, {functions as t278_functions} from './translators-medra.ts';
+import t279, {functions as t279_functions} from './translators-medium.ts';
+import t280, {functions as t280_functions} from './translators-medes.ts';
+import t281, {functions as t281_functions} from './translators-mdpi-journals.ts';
+import t282, {functions as t282_functions} from './translators-mcv.ts';
+import t283, {functions as t283_functions} from './translators-max-planck-institute-for-the-history-of-science-virtual-laboratory-library.ts';
+import t284, {functions as t284_functions} from './translators-matbugat-ru.ts';
+import t285, {functions as t285_functions} from './translators-marcxml.ts';
+import t286, {functions as t286_functions} from './translators-marc.ts';
+import t287, {functions as t287_functions} from './translators-mainichi-daily-news.ts';
+import t288, {functions as t288_functions} from './translators-magazines-russ-ru.ts';
+import t289, {functions as t289_functions} from './translators-mab2.ts';
+import t290, {functions as t290_functions} from './translators-lwn-net.ts';
+import t291, {functions as t291_functions} from './translators-lulu.ts';
+import t292, {functions as t292_functions} from './translators-lookus.ts';
+import t293, {functions as t293_functions} from './translators-london-review-of-books.ts';
+import t294, {functions as t294_functions} from './translators-livivo.ts';
+import t295, {functions as t295_functions} from './translators-livejournal.ts';
+import t296, {functions as t296_functions} from './translators-literary-hub.ts';
+import t297, {functions as t297_functions} from './translators-lippincott-williams-and-wilkins.ts';
+import t298, {functions as t298_functions} from './translators-lingbuzz.ts';
+import t299, {functions as t299_functions} from './translators-library-of-congress-digital-collections.ts';
+import t300, {functions as t300_functions} from './translators-library-hub-discover.ts';
+import t301, {functions as t301_functions} from './translators-library-catalog-vtls.ts';
+import t302, {functions as t302_functions} from './translators-library-catalog-voyager.ts';
+import t303, {functions as t303_functions} from './translators-library-catalog-voyager-7.ts';
+import t304, {functions as t304_functions} from './translators-library-catalog-visual-library-2021.ts';
+import t305, {functions as t305_functions} from './translators-library-catalog-tlc-youseemore.ts';
+import t306, {functions as t306_functions} from './translators-library-catalog-tinread.ts';
+import t307, {functions as t307_functions} from './translators-library-catalog-tind-ils.ts';
+import t308, {functions as t308_functions} from './translators-library-catalog-slims.ts';
+import t309, {functions as t309_functions} from './translators-library-catalog-sirsi.ts';
+import t310, {functions as t310_functions} from './translators-library-catalog-sirsi-elibrary.ts';
+import t311, {functions as t311_functions} from './translators-library-catalog-rero-ils.ts';
+import t312, {functions as t312_functions} from './translators-library-catalog-quolto.ts';
+import t313, {functions as t313_functions} from './translators-library-catalog-polaris.ts';
+import t314, {functions as t314_functions} from './translators-library-catalog-pika.ts';
+import t315, {functions as t315_functions} from './translators-library-catalog-pica2.ts';
+import t316, {functions as t316_functions} from './translators-library-catalog-pica.ts';
+import t317, {functions as t317_functions} from './translators-library-catalog-opals.ts';
+import t318, {functions as t318_functions} from './translators-library-catalog-mango.ts';
+import t319, {functions as t319_functions} from './translators-library-catalog-koha.ts';
+import t320, {functions as t320_functions} from './translators-library-catalog-innopac.ts';
+import t321, {functions as t321_functions} from './translators-library-catalog-encore.ts';
+import t322, {functions as t322_functions} from './translators-library-catalog-dynix.ts';
+import t323, {functions as t323_functions} from './translators-library-catalog-dra.ts';
+import t324, {functions as t324_functions} from './translators-library-catalog-capita-prism.ts';
+import t325, {functions as t325_functions} from './translators-library-catalog-blacklight.ts';
+import t326, {functions as t326_functions} from './translators-library-catalog-bibliocommons.ts';
+import t327, {functions as t327_functions} from './translators-library-catalog-aquabrowser.ts';
+import t328, {functions as t328_functions} from './translators-library-catalog-amicus.ts';
+import t329, {functions as t329_functions} from './translators-library-catalog-aleph.ts';
+import t330, {functions as t330_functions} from './translators-libraries-tasmania.ts';
+import t331, {functions as t331_functions} from './translators-lexisnexis.ts';
+import t332, {functions as t332_functions} from './translators-lexis.ts';
+import t333, {functions as t333_functions} from './translators-legislative-insight.ts';
+import t334, {functions as t334_functions} from './translators-le-monde.ts';
+import t335, {functions as t335_functions} from './translators-le-monde-diplomatique.ts';
+import t336, {functions as t336_functions} from './translators-le-maitron.ts';
+import t337, {functions as t337_functions} from './translators-le-figaro.ts';
+import t338, {functions as t338_functions} from './translators-le-devoir.ts';
+import t339, {functions as t339_functions} from './translators-lapham-s-quarterly.ts';
+import t340, {functions as t340_functions} from './translators-landesbibliographie-baden-w-rttemberg.ts';
+import t341, {functions as t341_functions} from './translators-lagen-nu.ts';
+import t342, {functions as t342_functions} from './translators-la-times.ts';
+import t343, {functions as t343_functions} from './translators-la-rep-blica-peru.ts';
+import t344, {functions as t344_functions} from './translators-la-presse.ts';
+import t345, {functions as t345_functions} from './translators-la-naci-n-argentina.ts';
+import t346, {functions as t346_functions} from './translators-la-croix.ts';
+import t347, {functions as t347_functions} from './translators-l-gifrance.ts';
+import t348, {functions as t348_functions} from './translators-l-ann-e-philologique.ts';
+import t349, {functions as t349_functions} from './translators-kstudy.ts';
+import t350, {functions as t350_functions} from './translators-korean-national-library.ts';
+import t351, {functions as t351_functions} from './translators-kommersant.ts';
+import t352, {functions as t352_functions} from './translators-kitapyurdu-com.ts';
+import t353, {functions as t353_functions} from './translators-khaama-press.ts';
+import t354, {functions as t354_functions} from './translators-kanopy.ts';
+import t355, {functions as t355_functions} from './translators-jurpc.ts';
+import t356, {functions as t356_functions} from './translators-juris.ts';
+import t357, {functions as t357_functions} from './translators-jurion.ts';
+import t358, {functions as t358_functions} from './translators-juricaf.ts';
+import t359, {functions as t359_functions} from './translators-jstor.ts';
+import t360, {functions as t360_functions} from './translators-jrc-publications-repository.ts';
+import t361, {functions as t361_functions} from './translators-journal-of-religion-and-society.ts';
+import t362, {functions as t362_functions} from './translators-journal-of-machine-learning-research.ts';
+import t363, {functions as t363_functions} from './translators-journal-of-extension.ts';
+import t364, {functions as t364_functions} from './translators-journal-of-electronic-publishing.ts';
+import t365, {functions as t365_functions} from './translators-jisc-historical-texts.ts';
+import t366, {functions as t366_functions} from './translators-jets.ts';
+import t367, {functions as t367_functions} from './translators-japan-times-online.ts';
+import t368, {functions as t368_functions} from './translators-jahrbuch.ts';
+import t369, {functions as t369_functions} from './translators-j-stage.ts';
+import t370, {functions as t370_functions} from './translators-isidore.ts';
+import t371, {functions as t371_functions} from './translators-ipcc.ts';
+import t372, {functions as t372_functions} from './translators-io-port.ts';
+import t373, {functions as t373_functions} from './translators-inveniordm.ts';
+import t374, {functions as t374_functions} from './translators-internet-archive.ts';
+import t375, {functions as t375_functions} from './translators-internet-archive-wayback-machine.ts';
+import t376, {functions as t376_functions} from './translators-internet-archive-scholar.ts';
+import t377, {functions as t377_functions} from './translators-international-nuclear-information-system.ts';
+import t378, {functions as t378_functions} from './translators-inter-research-science-center.ts';
+import t379, {functions as t379_functions} from './translators-intellixir.ts';
+import t380, {functions as t380_functions} from './translators-integrum.ts';
+import t381, {functions as t381_functions} from './translators-institute-of-physics.ts';
+import t382, {functions as t382_functions} from './translators-institute-of-contemporary-art.ts';
+import t383, {functions as t383_functions} from './translators-inspire.ts';
+import t384, {functions as t384_functions} from './translators-insignia-opac.ts';
+import t385, {functions as t385_functions} from './translators-inside-higher-ed.ts';
+import t386, {functions as t386_functions} from './translators-ingentaconnect.ts';
+import t387, {functions as t387_functions} from './translators-infotrac.ts';
+import t388, {functions as t388_functions} from './translators-informit-database.ts';
+import t389, {functions as t389_functions} from './translators-informationssystem-medienpaedagogik.ts';
+import t390, {functions as t390_functions} from './translators-in-these-times.ts';
+import t391, {functions as t391_functions} from './translators-imdb.ts';
+import t392, {functions as t392_functions} from './translators-ign.ts';
+import t393, {functions as t393_functions} from './translators-ietf.ts';
+import t394, {functions as t394_functions} from './translators-ieee-xplore.ts';
+import t395, {functions as t395_functions} from './translators-ieee-computer-society.ts';
+import t396, {functions as t396_functions} from './translators-idref.ts';
+import t397, {functions as t397_functions} from './translators-idea-alm.ts';
+import t398, {functions as t398_functions} from './translators-ibisworld.ts';
+import t399, {functions as t399_functions} from './translators-human-rights-watch.ts';
+import t400, {functions as t400_functions} from './translators-huff-post.ts';
+import t401, {functions as t401_functions} from './translators-hudoc.ts';
+import t402, {functions as t402_functions} from './translators-homeland-security-digital-library.ts';
+import t403, {functions as t403_functions} from './translators-hlas-historical.ts';
+import t404, {functions as t404_functions} from './translators-hispanic-american-periodical-index.ts';
+import t405, {functions as t405_functions} from './translators-hindawi-publishers.ts';
+import t406, {functions as t406_functions} from './translators-highwire.ts';
+import t407, {functions as t407_functions} from './translators-highwire-2-0.ts';
+import t408, {functions as t408_functions} from './translators-highbeam.ts';
+import t409, {functions as t409_functions} from './translators-herder.ts';
+import t410, {functions as t410_functions} from './translators-heise.ts';
+import t411, {functions as t411_functions} from './translators-heinonline.ts';
+import t412, {functions as t412_functions} from './translators-hcsp.ts';
+import t413, {functions as t413_functions} from './translators-hathitrust.ts';
+import t414, {functions as t414_functions} from './translators-harvard-university-press-books.ts';
+import t415, {functions as t415_functions} from './translators-harvard-caselaw-access-project.ts';
+import t416, {functions as t416_functions} from './translators-harvard-business-review.ts';
+import t417, {functions as t417_functions} from './translators-harper-s-magazine.ts';
+import t418, {functions as t418_functions} from './translators-hanrei-watch-rss-service.ts';
+import t419, {functions as t419_functions} from './translators-handelszeitung.ts';
+import t420, {functions as t420_functions} from './translators-hal-archives-ouvertes.ts';
+import t421, {functions as t421_functions} from './translators-haaretz.ts';
+import t422, {functions as t422_functions} from './translators-gulag-many-days-many-lives.ts';
+import t423, {functions as t423_functions} from './translators-gpo-access-e-cfr.ts';
+import t424, {functions as t424_functions} from './translators-govinfo.ts';
+import t425, {functions as t425_functions} from './translators-google-scholar.ts';
+import t426, {functions as t426_functions} from './translators-google-research.ts';
+import t427, {functions as t427_functions} from './translators-google-presentation.ts';
+import t428, {functions as t428_functions} from './translators-google-play.ts';
+import t429, {functions as t429_functions} from './translators-google-patents.ts';
+import t430, {functions as t430_functions} from './translators-google-books.ts';
+import t431, {functions as t431_functions} from './translators-goodreads.ts';
+import t432, {functions as t432_functions} from './translators-gms-german-medical-science.ts';
+import t433, {functions as t433_functions} from './translators-gmail.ts';
+import t434, {functions as t434_functions} from './translators-globes.ts';
+import t435, {functions as t435_functions} from './translators-github.ts';
+import t436, {functions as t436_functions} from './translators-gene-ontology.ts';
+import t437, {functions as t437_functions} from './translators-gasyrlar-awazy.ts';
+import t438, {functions as t438_functions} from './translators-gamestar-gamepro.ts';
+import t439, {functions as t439_functions} from './translators-gamespot.ts';
+import t440, {functions as t440_functions} from './translators-game-studies.ts';
+import t441, {functions as t441_functions} from './translators-gallica.ts';
+import t442, {functions as t442_functions} from './translators-galegroup.ts';
+import t443, {functions as t443_functions} from './translators-galegdc.ts';
+import t444, {functions as t444_functions} from './translators-gale-databases.ts';
+import t445, {functions as t445_functions} from './translators-frontiers.ts';
+import t446, {functions as t446_functions} from './translators-frieze.ts';
+import t447, {functions as t447_functions} from './translators-freepatentsonline.ts';
+import t448, {functions as t448_functions} from './translators-freecite.ts';
+import t449, {functions as t449_functions} from './translators-fr-online-de.ts';
+import t450, {functions as t450_functions} from './translators-foreign-policy.ts';
+import t451, {functions as t451_functions} from './translators-foreign-affairs.ts';
+import t452, {functions as t452_functions} from './translators-flickr.ts';
+import t453, {functions as t453_functions} from './translators-fishpond-co-nz.ts';
+import t454, {functions as t454_functions} from './translators-finna.ts';
+import t455, {functions as t455_functions} from './translators-financial-times.ts';
+import t456, {functions as t456_functions} from './translators-figshare.ts';
+import t457, {functions as t457_functions} from './translators-feb-web-ru.ts';
+import t458, {functions as t458_functions} from './translators-faz-net.ts';
+import t459, {functions as t459_functions} from './translators-fatcat.ts';
+import t460, {functions as t460_functions} from './translators-fao-publications.ts';
+import t461, {functions as t461_functions} from './translators-fairfax-australia.ts';
+import t462, {functions as t462_functions} from './translators-failed-architecture.ts';
+import t463, {functions as t463_functions} from './translators-factiva.ts';
+import t464, {functions as t464_functions} from './translators-fachportal-p-dagogik.ts';
+import t465, {functions as t465_functions} from './translators-f1000-research.ts';
+import t466, {functions as t466_functions} from './translators-europe-pmc.ts';
+import t467, {functions as t467_functions} from './translators-eurogamer-usgamer.ts';
+import t468, {functions as t468_functions} from './translators-eurasianet.ts';
+import t469, {functions as t469_functions} from './translators-eur-lex.ts';
+import t470, {functions as t470_functions} from './translators-euclid.ts';
+import t471, {functions as t471_functions} from './translators-etatar-ru.ts';
+import t472, {functions as t472_functions} from './translators-espacenet.ts';
+import t473, {functions as t473_functions} from './translators-erudit.ts';
+import t474, {functions as t474_functions} from './translators-eric.ts';
+import t475, {functions as t475_functions} from './translators-eprint-iacr.ts';
+import t476, {functions as t476_functions} from './translators-epicurious.ts';
+import t477, {functions as t477_functions} from './translators-epa-national-library-catalog.ts';
+import t478, {functions as t478_functions} from './translators-envidat.ts';
+import t479, {functions as t479_functions} from './translators-engineering-village.ts';
+import t480, {functions as t480_functions} from './translators-encyclopedia-of-korean-culture.ts';
+import t481, {functions as t481_functions} from './translators-encyclopedia-of-chicago.ts';
+import t482, {functions as t482_functions} from './translators-emja.ts';
+import t483, {functions as t483_functions} from './translators-emerald-insight.ts';
+import t484, {functions as t484_functions} from './translators-emedicine.ts';
+import t485, {functions as t485_functions} from './translators-elsevier-health-journals.ts';
+import t486, {functions as t486_functions} from './translators-elife.ts';
+import t487, {functions as t487_functions} from './translators-elicit.ts';
+import t488, {functions as t488_functions} from './translators-elibrary-ru.ts';
+import t489, {functions as t489_functions} from './translators-electronic-colloquium-on-computational-complexity.ts';
+import t490, {functions as t490_functions} from './translators-el-pais.ts';
+import t491, {functions as t491_functions} from './translators-el-comercio-per.ts';
+import t492, {functions as t492_functions} from './translators-education-week.ts';
+import t493, {functions as t493_functions} from './translators-edinburgh-university-press-journals.ts';
+import t494, {functions as t494_functions} from './translators-ebscohost.ts';
+import t495, {functions as t495_functions} from './translators-ebsco-discovery-layer.ts';
+import t496, {functions as t496_functions} from './translators-ebrary.ts';
+import t497, {functions as t497_functions} from './translators-eastview.ts';
+import t498, {functions as t498_functions} from './translators-e-periodica-switzerland.ts';
+import t499, {functions as t499_functions} from './translators-duke-university-press-books.ts';
+import t500, {functions as t500_functions} from './translators-dspace-intermediate-metadata.ts';
+import t501, {functions as t501_functions} from './translators-dryad-digital-repository.ts';
+import t502, {functions as t502_functions} from './translators-drugbank-ca.ts';
+import t503, {functions as t503_functions} from './translators-dreier-neuerscheinungsdienst.ts';
+import t504, {functions as t504_functions} from './translators-dpla.ts';
+import t505, {functions as t505_functions} from './translators-douban.ts';
+import t506, {functions as t506_functions} from './translators-doi.ts';
+import t507, {functions as t507_functions} from './translators-doaj.ts';
+import t508, {functions as t508_functions} from './translators-dlibra.ts';
+import t509, {functions as t509_functions} from './translators-dimensions.ts';
+import t510, {functions as t510_functions} from './translators-digizeitschriften.ts';
+import t511, {functions as t511_functions} from './translators-digital-spy.ts';
+import t512, {functions as t512_functions} from './translators-digital-humanities-quarterly.ts';
+import t513, {functions as t513_functions} from './translators-digibib-net.ts';
+import t514, {functions as t514_functions} from './translators-die-zeit.ts';
+import t515, {functions as t515_functions} from './translators-dialnet.ts';
+import t516, {functions as t516_functions} from './translators-dhistory.ts';
+import t517, {functions as t517_functions} from './translators-deutsche-nationalbibliothek.ts';
+import t518, {functions as t518_functions} from './translators-deutsche-fotothek.ts';
+import t519, {functions as t519_functions} from './translators-desiring-god.ts';
+import t520, {functions as t520_functions} from './translators-der-spiegel.ts';
+import t521, {functions as t521_functions} from './translators-der-freitag.ts';
+import t522, {functions as t522_functions} from './translators-depatisnet.ts';
+import t523, {functions as t523_functions} from './translators-denik-cz.ts';
+import t524, {functions as t524_functions} from './translators-demographic-research.ts';
+import t525, {functions as t525_functions} from './translators-delpher.ts';
+import t526, {functions as t526_functions} from './translators-dejure-org.ts';
+import t527, {functions as t527_functions} from './translators-defense-technical-information-center.ts';
+import t528, {functions as t528_functions} from './translators-de-gruyter.ts';
+import t529, {functions as t529_functions} from './translators-dbpia.ts';
+import t530, {functions as t530_functions} from './translators-dblp-computer-science-bibliography.ts';
+import t531, {functions as t531_functions} from './translators-daum-news.ts';
+import t532, {functions as t532_functions} from './translators-dataverse.ts';
+import t533, {functions as t533_functions} from './translators-datacite-json.ts';
+import t534, {functions as t534_functions} from './translators-databrary.ts';
+import t535, {functions as t535_functions} from './translators-data-gov.ts';
+import t536, {functions as t536_functions} from './translators-dart-europe.ts';
+import t537, {functions as t537_functions} from './translators-dar-almandumah.ts';
+import t538, {functions as t538_functions} from './translators-dai-zenon.ts';
+import t539, {functions as t539_functions} from './translators-dagstuhl-research-online-publication-server.ts';
+import t540, {functions as t540_functions} from './translators-dagens-nyheter.ts';
+import t541, {functions as t541_functions} from './translators-dabi.ts';
+import t542, {functions as t542_functions} from './translators-current-affairs.ts';
+import t543, {functions as t543_functions} from './translators-csiro-publishing.ts';
+import t544, {functions as t544_functions} from './translators-crosbi.ts';
+import t545, {functions as t545_functions} from './translators-cq-press.ts';
+import t546, {functions as t546_functions} from './translators-courtlistener.ts';
+import t547, {functions as t547_functions} from './translators-cornell-university-press.ts';
+import t548, {functions as t548_functions} from './translators-cornell-lii.ts';
+import t549, {functions as t549_functions} from './translators-copernicus.ts';
+import t550, {functions as t550_functions} from './translators-computer-history-museum-archive.ts';
+import t551, {functions as t551_functions} from './translators-common-place.ts';
+import t552, {functions as t552_functions} from './translators-columbia-university-press.ts';
+import t553, {functions as t553_functions} from './translators-colorado-state-legislature.ts';
+import t554, {functions as t554_functions} from './translators-code4lib-journal.ts';
+import t555, {functions as t555_functions} from './translators-cobiss.ts';
+import t556, {functions as t556_functions} from './translators-cnki.ts';
+import t557, {functions as t557_functions} from './translators-clinicaltrials-gov.ts';
+import t558, {functions as t558_functions} from './translators-clinical-key.ts';
+import t559, {functions as t559_functions} from './translators-climate-change-and-human-health-literature-portal.ts';
+import t560, {functions as t560_functions} from './translators-clase.ts';
+import t561, {functions as t561_functions} from './translators-clacso.ts';
+import t562, {functions as t562_functions} from './translators-civilization-ca.ts';
+import t563, {functions as t563_functions} from './translators-citizen-lab.ts';
+import t564, {functions as t564_functions} from './translators-citeseer.ts';
+import t565, {functions as t565_functions} from './translators-cinii-research.ts';
+import t566, {functions as t566_functions} from './translators-cia-world-factbook.ts';
+import t567, {functions as t567_functions} from './translators-chronicling-america.ts';
+import t568, {functions as t568_functions} from './translators-christian-science-monitor.ts';
+import t569, {functions as t569_functions} from './translators-champlain-society-collection.ts';
+import t570, {functions as t570_functions} from './translators-cff.ts';
+import t571, {functions as t571_functions} from './translators-cff-references.ts';
+import t572, {functions as t572_functions} from './translators-ceur-workshop-proceedings.ts';
+import t573, {functions as t573_functions} from './translators-cern-document-server.ts';
+import t574, {functions as t574_functions} from './translators-central-and-eastern-european-online-library-journals.ts';
+import t575, {functions as t575_functions} from './translators-cell-press.ts';
+import t576, {functions as t576_functions} from './translators-ccfr-bnf.ts';
+import t577, {functions as t577_functions} from './translators-cbc.ts';
+import t578, {functions as t578_functions} from './translators-cascadilla-proceedings-project.ts';
+import t579, {functions as t579_functions} from './translators-caod.ts';
+import t580, {functions as t580_functions} from './translators-canlii.ts';
+import t581, {functions as t581_functions} from './translators-canadiana-ca.ts';
+import t582, {functions as t582_functions} from './translators-canadian-letters-and-images.ts';
+import t583, {functions as t583_functions} from './translators-canada-com.ts';
+import t584, {functions as t584_functions} from './translators-cambridge-engage-preprints.ts';
+import t585, {functions as t585_functions} from './translators-cambridge-core.ts';
+import t586, {functions as t586_functions} from './translators-calmatters.ts';
+import t587, {functions as t587_functions} from './translators-calisphere.ts';
+import t588, {functions as t588_functions} from './translators-cairn-info.ts';
+import t589, {functions as t589_functions} from './translators-cabi-cab-abstracts.ts';
+import t590, {functions as t590_functions} from './translators-business-standard.ts';
+import t591, {functions as t591_functions} from './translators-bundesgesetzblatt.ts';
+import t592, {functions as t592_functions} from './translators-bryn-mawr-classical-review.ts';
+import t593, {functions as t593_functions} from './translators-brukerh-ndboken.ts';
+import t594, {functions as t594_functions} from './translators-brill.ts';
+import t595, {functions as t595_functions} from './translators-bracero-history-archive.ts';
+import t596, {functions as t596_functions} from './translators-bosworth-toller-s-anglo-saxon-dictionary-online.ts';
+import t597, {functions as t597_functions} from './translators-boston-review.ts';
+import t598, {functions as t598_functions} from './translators-bookshop-org.ts';
+import t599, {functions as t599_functions} from './translators-bookmarks.ts';
+import t600, {functions as t600_functions} from './translators-bofip-imp-ts.ts';
+import t601, {functions as t601_functions} from './translators-boe.ts';
+import t602, {functions as t602_functions} from './translators-bocc.ts';
+import t603, {functions as t603_functions} from './translators-bluesky.ts';
+import t604, {functions as t604_functions} from './translators-bloomsbury-food-library.ts';
+import t605, {functions as t605_functions} from './translators-bloomberg.ts';
+import t606, {functions as t606_functions} from './translators-blogger.ts';
+import t607, {functions as t607_functions} from './translators-blaetter-fuer-deutsche-und-internationale-politik.ts';
+import t608, {functions as t608_functions} from './translators-bioone.ts';
+import t609, {functions as t609_functions} from './translators-biomed-central.ts';
+import t610, {functions as t610_functions} from './translators-bioconductor.ts';
+import t611, {functions as t611_functions} from './translators-bibsys.ts';
+import t612, {functions as t612_functions} from './translators-bibliotheque-et-archives-nationale-du-quebec-pistard.ts';
+import t613, {functions as t613_functions} from './translators-biblioth-que-nationale-de-france.ts';
+import t614, {functions as t614_functions} from './translators-biblioth-que-et-archives-nationales-du-qu-bec.ts';
+import t615, {functions as t615_functions} from './translators-biblioteca-nacional-de-maestros.ts';
+import t616, {functions as t616_functions} from './translators-biblio-com.ts';
+import t617, {functions as t617_functions} from './translators-bezneng-gajit.ts';
+import t618, {functions as t618_functions} from './translators-beobachter.ts';
+import t619, {functions as t619_functions} from './translators-beck-online.ts';
+import t620, {functions as t620_functions} from './translators-bbc.ts';
+import t621, {functions as t621_functions} from './translators-bbc-genome.ts';
+import t622, {functions as t622_functions} from './translators-baruch-foundation.ts';
+import t623, {functions as t623_functions} from './translators-bangkok-post.ts';
+import t624, {functions as t624_functions} from './translators-bailii.ts';
+import t625, {functions as t625_functions} from './translators-baidu-scholar.ts';
+import t626, {functions as t626_functions} from './translators-australian-dictionary-of-biography.ts';
+import t627, {functions as t627_functions} from './translators-austlii-and-nzlii.ts';
+import t628, {functions as t628_functions} from './translators-atypon-journals.ts';
+import t629, {functions as t629_functions} from './translators-ats-international-journal.ts';
+import t630, {functions as t630_functions} from './translators-atlanta-journal-constitution.ts';
+import t631, {functions as t631_functions} from './translators-astis.ts';
+import t632, {functions as t632_functions} from './translators-asco-meeting-library.ts';
+import t633, {functions as t633_functions} from './translators-asce.ts';
+import t634, {functions as t634_functions} from './translators-arxiv-vanity.ts';
+import t635, {functions as t635_functions} from './translators-arxiv-org.ts';
+import t636, {functions as t636_functions} from './translators-artstor.ts';
+import t637, {functions as t637_functions} from './translators-artnews.ts';
+import t638, {functions as t638_functions} from './translators-artnet.ts';
+import t639, {functions as t639_functions} from './translators-artforum.ts';
+import t640, {functions as t640_functions} from './translators-artfl-encyclopedie.ts';
+import t641, {functions as t641_functions} from './translators-artefacts-canada.ts';
+import t642, {functions as t642_functions} from './translators-art-institute-of-chicago.ts';
+import t643, {functions as t643_functions} from './translators-ariana-news.ts';
+import t644, {functions as t644_functions} from './translators-archives-canada.ts';
+import t645, {functions as t645_functions} from './translators-archive-ouverte-en-sciences-de-l-information-et-de-la-communication-aosic.ts';
+import t646, {functions as t646_functions} from './translators-archiv-fuer-sozialgeschichte.ts';
+import t647, {functions as t647_functions} from './translators-archeion.ts';
+import t648, {functions as t648_functions} from './translators-aquadocs.ts';
+import t649, {functions as t649_functions} from './translators-aps.ts';
+import t650, {functions as t650_functions} from './translators-aps-physics.ts';
+import t651, {functions as t651_functions} from './translators-apn-ru.ts';
+import t652, {functions as t652_functions} from './translators-apa-psycnet.ts';
+import t653, {functions as t653_functions} from './translators-antikvarium-hu.ts';
+import t654, {functions as t654_functions} from './translators-annual-reviews.ts';
+import t655, {functions as t655_functions} from './translators-ancestry-com-us-federal-census.ts';
+import t656, {functions as t656_functions} from './translators-ams-mathscinet.ts';
+import t657, {functions as t657_functions} from './translators-ams-mathscinet-legacy.ts';
+import t658, {functions as t658_functions} from './translators-ams-journals.ts';
+import t659, {functions as t659_functions} from './translators-american-prospect.ts';
+import t660, {functions as t660_functions} from './translators-american-institute-of-aeronautics-and-astronautics.ts';
+import t661, {functions as t661_functions} from './translators-american-archive-of-public-broadcasting.ts';
+import t662, {functions as t662_functions} from './translators-amazon.ts';
+import t663, {functions as t663_functions} from './translators-aluka.ts';
+import t664, {functions as t664_functions} from './translators-alternet.ts';
+import t665, {functions as t665_functions} from './translators-alsharekh.ts';
+import t666, {functions as t666_functions} from './translators-allafrica.ts';
+import t667, {functions as t667_functions} from './translators-alexander-street-press.ts';
+import t668, {functions as t668_functions} from './translators-airiti.ts';
+import t669, {functions as t669_functions} from './translators-air-university-journals.ts';
+import t670, {functions as t670_functions} from './translators-aip.ts';
+import t671, {functions as t671_functions} from './translators-ahval-news.ts';
+import t672, {functions as t672_functions} from './translators-agris.ts';
+import t673, {functions as t673_functions} from './translators-agencia-del-isbn.ts';
+import t674, {functions as t674_functions} from './translators-aea-web.ts';
+import t675, {functions as t675_functions} from './translators-adam-matthew-digital.ts';
+import t676, {functions as t676_functions} from './translators-acs-publications.ts';
+import t677, {functions as t677_functions} from './translators-acm-digital-library.ts';
+import t678, {functions as t678_functions} from './translators-aclweb.ts';
+import t679, {functions as t679_functions} from './translators-acls-humanities-ebook.ts';
+import t680, {functions as t680_functions} from './translators-access-science.ts';
+import t681, {functions as t681_functions} from './translators-access-medicine.ts';
+import t682, {functions as t682_functions} from './translators-access-engineering.ts';
+import t683, {functions as t683_functions} from './translators-abc-news-australia.ts';
+import t684, {functions as t684_functions} from './translators-ab-imperio.ts';
+
+export default {['translators-zoterobib']: { default: t0, functions: t0_functions },
+  ['translators-zotero-org']: { default: t1, functions: t1_functions },
+  ['translators-zobodat']: { default: t2, functions: t2_functions },
+  ['translators-ziponline']: { default: t3, functions: t3_functions },
+  ['translators-zbmath']: { default: t4, functions: t4_functions },
+  ['translators-ypfs']: { default: t5, functions: t5_functions },
+  ['translators-youtube']: { default: t6, functions: t6_functions },
+  ['translators-ynet']: { default: t7, functions: t7_functions },
+  ['translators-yandex-books']: { default: t8, functions: t8_functions },
+  ['translators-worldcat-discovery-service']: { default: t9, functions: t9_functions },
+  ['translators-world-shakespeare-bibliography-online']: { default: t10, functions: t10_functions },
+  ['translators-world-history-connected']: { default: t11, functions: t11_functions },
+  ['translators-world-digital-library']: { default: t12, functions: t12_functions },
+  ['translators-womennews']: { default: t13, functions: t13_functions },
+  ['translators-wiso']: { default: t14, functions: t14_functions },
+  ['translators-wired']: { default: t15, functions: t15_functions },
+  ['translators-wipo']: { default: t16, functions: t16_functions },
+  ['translators-winnipeg-free-press']: { default: t17, functions: t17_functions },
+  ['translators-wilson-center-digital-archive']: { default: t18, functions: t18_functions },
+  ['translators-wiley-online-library']: { default: t19, functions: t19_functions },
+  ['translators-wildlife-biology-in-practice']: { default: t20, functions: t20_functions },
+  ['translators-wiktionary']: { default: t21, functions: t21_functions },
+  ['translators-wikiwand']: { default: t22, functions: t22_functions },
+  ['translators-wikisource']: { default: t23, functions: t23_functions },
+  ['translators-wikipedia']: { default: t24, functions: t24_functions },
+  ['translators-wikimedia-commons']: { default: t25, functions: t25_functions },
+  ['translators-wikileaks-plusd']: { default: t26, functions: t26_functions },
+  ['translators-wikidata']: { default: t27, functions: t27_functions },
+  ['translators-wikidata-quickstatements']: { default: t28, functions: t28_functions },
+  ['translators-who']: { default: t29, functions: t29_functions },
+  ['translators-westlaw-uk']: { default: t30, functions: t30_functions },
+  ['translators-welt-online']: { default: t31, functions: t31_functions },
+  ['translators-web-of-science']: { default: t32, functions: t32_functions },
+  ['translators-web-of-science-tagged']: { default: t33, functions: t33_functions },
+  ['translators-web-of-science-nextgen']: { default: t34, functions: t34_functions },
+  ['translators-washington-post']: { default: t35, functions: t35_functions },
+  ['translators-washington-monthly']: { default: t36, functions: t36_functions },
+  ['translators-wanfang-data']: { default: t37, functions: t37_functions },
+  ['translators-wall-street-journal']: { default: t38, functions: t38_functions },
+  ['translators-voxeu']: { default: t39, functions: t39_functions },
+  ['translators-vimeo']: { default: t40, functions: t40_functions },
+  ['translators-victoria-albert-museum']: { default: t41, functions: t41_functions },
+  ['translators-vice']: { default: t42, functions: t42_functions },
+  ['translators-verso-books']: { default: t43, functions: t43_functions },
+  ['translators-verniana-jules-verne-studies']: { default: t44, functions: t44_functions },
+  ['translators-vanity-fair']: { default: t45, functions: t45_functions },
+  ['translators-us-national-archives-research-catalog']: { default: t46, functions: t46_functions },
+  ['translators-uptodate-references']: { default: t47, functions: t47_functions },
+  ['translators-upcommons']: { default: t48, functions: t48_functions },
+  ['translators-unz-print-archive']: { default: t49, functions: t49_functions },
+  ['translators-university-press-scholarship']: { default: t50, functions: t50_functions },
+  ['translators-university-of-wisconsin-madison-libraries-catalog']: { default: t51, functions: t51_functions },
+  ['translators-university-of-chicago-press-books']: { default: t52, functions: t52_functions },
+  ['translators-university-of-california-press-books']: { default: t53, functions: t53_functions },
+  ['translators-uchicago-vufind']: { default: t54, functions: t54_functions },
+  ['translators-twitter']: { default: t55, functions: t55_functions },
+  ['translators-tvnz']: { default: t56, functions: t56_functions },
+  ['translators-tv-by-the-numbers']: { default: t57, functions: t57_functions },
+  ['translators-tumblr']: { default: t58, functions: t58_functions },
+  ['translators-trove']: { default: t59, functions: t59_functions },
+  ['translators-treesearch']: { default: t60, functions: t60_functions },
+  ['translators-transportation-research-board']: { default: t61, functions: t61_functions },
+  ['translators-toronto-star']: { default: t62, functions: t62_functions },
+  ['translators-tony-blair-institute-for-global-change']: { default: t63, functions: t63_functions },
+  ['translators-timesmachine']: { default: t64, functions: t64_functions },
+  ['translators-time-com']: { default: t65, functions: t65_functions },
+  ['translators-thieme']: { default: t66, functions: t66_functions },
+  ['translators-theory-of-computing']: { default: t67, functions: t67_functions },
+  ['translators-themarker']: { default: t68, functions: t68_functions },
+  ['translators-the-times-of-israel']: { default: t69, functions: t69_functions },
+  ['translators-the-times-and-sunday-times']: { default: t70, functions: t70_functions },
+  ['translators-the-telegraph']: { default: t71, functions: t71_functions },
+  ['translators-the-straits-times']: { default: t72, functions: t72_functions },
+  ['translators-the-open-library']: { default: t73, functions: t73_functions },
+  ['translators-the-new-yorker']: { default: t74, functions: t74_functions },
+  ['translators-the-new-york-review-of-books']: { default: t75, functions: t75_functions },
+  ['translators-the-new-republic']: { default: t76, functions: t76_functions },
+  ['translators-the-national-archives-uk']: { default: t77, functions: t77_functions },
+  ['translators-the-nation']: { default: t78, functions: t78_functions },
+  ['translators-the-microfinance-gateway']: { default: t79, functions: t79_functions },
+  ['translators-the-met']: { default: t80, functions: t80_functions },
+  ['translators-the-intercept']: { default: t81, functions: t81_functions },
+  ['translators-the-independent']: { default: t82, functions: t82_functions },
+  ['translators-the-hindu']: { default: t83, functions: t83_functions },
+  ['translators-the-hamilton-spectator']: { default: t84, functions: t84_functions },
+  ['translators-the-guardian']: { default: t85, functions: t85_functions },
+  ['translators-the-globe-and-mail']: { default: t86, functions: t86_functions },
+  ['translators-the-free-dictionary']: { default: t87, functions: t87_functions },
+  ['translators-the-economist']: { default: t88, functions: t88_functions },
+  ['translators-the-economic-times-the-times-of-india']: { default: t89, functions: t89_functions },
+  ['translators-the-daily-beast']: { default: t90, functions: t90_functions },
+  ['translators-the-chronicle-of-higher-education']: { default: t91, functions: t91_functions },
+  ['translators-the-boston-globe']: { default: t92, functions: t92_functions },
+  ['translators-the-atlantic']: { default: t93, functions: t93_functions },
+  ['translators-the-art-newspaper']: { default: t94, functions: t94_functions },
+  ['translators-tesis-doctorals-en-xarxa']: { default: t95, functions: t95_functions },
+  ['translators-taz-de']: { default: t96, functions: t96_functions },
+  ['translators-taylor-francis-ebooks']: { default: t97, functions: t97_functions },
+  ['translators-taylor-and-francis-nejm']: { default: t98, functions: t98_functions },
+  ['translators-tatpressa-ru']: { default: t99, functions: t99_functions },
+  ['translators-tatknigafund']: { default: t100, functions: t100_functions },
+  ['translators-talisprism']: { default: t101, functions: t101_functions },
+  ['translators-talis-aspire']: { default: t102, functions: t102_functions },
+  ['translators-tagesspiegel']: { default: t103, functions: t103_functions },
+  ['translators-svt-nyheter']: { default: t104, functions: t104_functions },
+  ['translators-sveriges-radio']: { default: t105, functions: t105_functions },
+  ['translators-svenska-dagbladet']: { default: t106, functions: t106_functions },
+  ['translators-superlib']: { default: t107, functions: t107_functions },
+  ['translators-summon-2']: { default: t108, functions: t108_functions },
+  ['translators-sueddeutsche-de']: { default: t109, functions: t109_functions },
+  ['translators-sud-ouest']: { default: t110, functions: t110_functions },
+  ['translators-substack']: { default: t111, functions: t111_functions },
+  ['translators-stuff-co-nz']: { default: t112, functions: t112_functions },
+  ['translators-store-norske-leksikon']: { default: t113, functions: t113_functions },
+  ['translators-stitcher']: { default: t114, functions: t114_functions },
+  ['translators-state-records-office-of-western-australia']: { default: t115, functions: t115_functions },
+  ['translators-stanford-university-press']: { default: t116, functions: t116_functions },
+  ['translators-standard-ebooks']: { default: t117, functions: t117_functions },
+  ['translators-stack-exchange']: { default: t118, functions: t118_functions },
+  ['translators-ssrn']: { default: t119, functions: t119_functions },
+  ['translators-ssoar']: { default: t120, functions: t120_functions },
+  ['translators-springer-link']: { default: t121, functions: t121_functions },
+  ['translators-sora']: { default: t122, functions: t122_functions },
+  ['translators-slub-dresden']: { default: t123, functions: t123_functions },
+  ['translators-slideshare']: { default: t124, functions: t124_functions },
+  ['translators-slate']: { default: t125, functions: t125_functions },
+  ['translators-sirs-knowledge-source']: { default: t126, functions: t126_functions },
+  ['translators-sipri']: { default: t127, functions: t127_functions },
+  ['translators-silverchair']: { default: t128, functions: t128_functions },
+  ['translators-sfu-ipinch']: { default: t129, functions: t129_functions },
+  ['translators-semantics-visual-library']: { default: t130, functions: t130_functions },
+  ['translators-semantic-scholar']: { default: t131, functions: t131_functions },
+  ['translators-scopus']: { default: t132, functions: t132_functions },
+  ['translators-scinapse']: { default: t133, functions: t133_functions },
+  ['translators-sciencedirect']: { default: t134, functions: t134_functions },
+  ['translators-scielo']: { default: t135, functions: t135_functions },
+  ['translators-schweizer-radio-und-fernsehen-srf']: { default: t136, functions: t136_functions },
+  ['translators-scholia']: { default: t137, functions: t137_functions },
+  ['translators-scholars-portal-journals']: { default: t138, functions: t138_functions },
+  ['translators-sbn-it']: { default: t139, functions: t139_functions },
+  ['translators-salt-research-archives']: { default: t140, functions: t140_functions },
+  ['translators-saildart']: { default: t141, functions: t141_functions },
+  ['translators-sage-knowledge']: { default: t142, functions: t142_functions },
+  ['translators-sage-journals']: { default: t143, functions: t143_functions },
+  ['translators-safari-books-online']: { default: t144, functions: t144_functions },
+  ['translators-sae-papers']: { default: t145, functions: t145_functions },
+  ['translators-sacramento-bee']: { default: t146, functions: t146_functions },
+  ['translators-russian-state-library']: { default: t147, functions: t147_functions },
+  ['translators-rsc-publishing']: { default: t148, functions: t148_functions },
+  ['translators-roll-call']: { default: t149, functions: t149_functions },
+  ['translators-rock-paper-shotgun']: { default: t150, functions: t150_functions },
+  ['translators-reuters']: { default: t151, functions: t151_functions },
+  ['translators-retsinformation']: { default: t152, functions: t152_functions },
+  ['translators-researchgate']: { default: t153, functions: t153_functions },
+  ['translators-research-square']: { default: t154, functions: t154_functions },
+  ['translators-repec-ideas']: { default: t155, functions: t155_functions },
+  ['translators-repec-econpapers']: { default: t156, functions: t156_functions },
+  ['translators-regeringskansliet']: { default: t157, functions: t157_functions },
+  ['translators-reddit']: { default: t158, functions: t158_functions },
+  ['translators-redalyc']: { default: t159, functions: t159_functions },
+  ['translators-rechtspraak-nl']: { default: t160, functions: t160_functions },
+  ['translators-rand']: { default: t161, functions: t161_functions },
+  ['translators-radio-free-europe-radio-liberty']: { default: t162, functions: t162_functions },
+  ['translators-r-packages']: { default: t163, functions: t163_functions },
+  ['translators-queensland-state-archives']: { default: t164, functions: t164_functions },
+  ['translators-qatar-digital-library']: { default: t165, functions: t165_functions },
+  ['translators-pypi']: { default: t166, functions: t166_functions },
+  ['translators-pubpub']: { default: t167, functions: t167_functions },
+  ['translators-pubmed']: { default: t168, functions: t168_functions },
+  ['translators-pubmed-central']: { default: t169, functions: t169_functions },
+  ['translators-publications-office-of-the-european-union']: { default: t170, functions: t170_functions },
+  ['translators-publications-du-qu-bec']: { default: t171, functions: t171_functions },
+  ['translators-public-record-office-victoria']: { default: t172, functions: t172_functions },
+  ['translators-pubfactory-journals']: { default: t173, functions: t173_functions },
+  ['translators-protein-data-bank']: { default: t174, functions: t174_functions },
+  ['translators-proquest']: { default: t175, functions: t175_functions },
+  ['translators-proquest-policyfile']: { default: t176, functions: t176_functions },
+  ['translators-proquest-ebook-central']: { default: t177, functions: t177_functions },
+  ['translators-promed']: { default: t178, functions: t178_functions },
+  ['translators-project-muse']: { default: t179, functions: t179_functions },
+  ['translators-project-gutenberg']: { default: t180, functions: t180_functions },
+  ['translators-probing-the-past']: { default: t181, functions: t181_functions },
+  ['translators-primo']: { default: t182, functions: t182_functions },
+  ['translators-primo-2018']: { default: t183, functions: t183_functions },
+  ['translators-preprints-org']: { default: t184, functions: t184_functions },
+  ['translators-prc-history-review']: { default: t185, functions: t185_functions },
+  ['translators-potsdamer-neueste-nachrichten']: { default: t186, functions: t186_functions },
+  ['translators-polygon']: { default: t187, functions: t187_functions },
+  ['translators-plos-journals']: { default: t188, functions: t188_functions },
+  ['translators-pleade']: { default: t189, functions: t189_functions },
+  ['translators-pkp-catalog-systems']: { default: t190, functions: t190_functions },
+  ['translators-philpapers']: { default: t191, functions: t191_functions },
+  ['translators-philosopher-s-imprint']: { default: t192, functions: t192_functions },
+  ['translators-perlego']: { default: t193, functions: t193_functions },
+  ['translators-perceiving-systems']: { default: t194, functions: t194_functions },
+  ['translators-pep-web']: { default: t195, functions: t195_functions },
+  ['translators-pei-archival-information-network']: { default: t196, functions: t196_functions },
+  ['translators-peeters']: { default: t197, functions: t197_functions },
+  ['translators-pc-games']: { default: t198, functions: t198_functions },
+  ['translators-pc-gamer']: { default: t199, functions: t199_functions },
+  ['translators-patents-uspto']: { default: t200, functions: t200_functions },
+  ['translators-pastebin']: { default: t201, functions: t201_functions },
+  ['translators-paris-review']: { default: t202, functions: t202_functions },
+  ['translators-papers-past']: { default: t203, functions: t203_functions },
+  ['translators-pajhwok-afghan-news']: { default: t204, functions: t204_functions },
+  ['translators-ozon-ru']: { default: t205, functions: t205_functions },
+  ['translators-oxford-university-press']: { default: t206, functions: t206_functions },
+  ['translators-oxford-reference']: { default: t207, functions: t207_functions },
+  ['translators-oxford-music-and-art-online']: { default: t208, functions: t208_functions },
+  ['translators-oxford-english-dictionary']: { default: t209, functions: t209_functions },
+  ['translators-oxford-dictionaries-premium']: { default: t210, functions: t210_functions },
+  ['translators-ovid']: { default: t211, functions: t211_functions },
+  ['translators-ovid-tagged']: { default: t212, functions: t212_functions },
+  ['translators-osti-energy-citations']: { default: t213, functions: t213_functions },
+  ['translators-osf-preprints']: { default: t214, functions: t214_functions },
+  ['translators-orcid']: { default: t215, functions: t215_functions },
+  ['translators-optimization-online']: { default: t216, functions: t216_functions },
+  ['translators-optical-society-of-america']: { default: t217, functions: t217_functions },
+  ['translators-openjur']: { default: t218, functions: t218_functions },
+  ['translators-openedition-journals']: { default: t219, functions: t219_functions },
+  ['translators-openedition-books']: { default: t220, functions: t220_functions },
+  ['translators-openalex']: { default: t221, functions: t221_functions },
+  ['translators-openalex-json']: { default: t222, functions: t222_functions },
+  ['translators-open-worldcat']: { default: t223, functions: t223_functions },
+  ['translators-open-knowledge-repository']: { default: t224, functions: t224_functions },
+  ['translators-open-conf']: { default: t225, functions: t225_functions },
+  ['translators-old-bailey-online']: { default: t226, functions: t226_functions },
+  ['translators-ohiolink']: { default: t227, functions: t227_functions },
+  ['translators-oecd']: { default: t228, functions: t228_functions },
+  ['translators-oclc-worldcat-firstsearch']: { default: t229, functions: t229_functions },
+  ['translators-oapen']: { default: t230, functions: t230_functions },
+  ['translators-nzz-ch']: { default: t231, functions: t231_functions },
+  ['translators-nytimes-com']: { default: t232, functions: t232_functions },
+  ['translators-nypl-research-catalog']: { default: t233, functions: t233_functions },
+  ['translators-nypl-menus']: { default: t234, functions: t234_functions },
+  ['translators-ntsb-accident-reports']: { default: t235, functions: t235_functions },
+  ['translators-nrc-research-press']: { default: t236, functions: t236_functions },
+  ['translators-nrc-nl']: { default: t237, functions: t237_functions },
+  ['translators-npr']: { default: t238, functions: t238_functions },
+  ['translators-notre-dame-philosophical-reviews']: { default: t239, functions: t239_functions },
+  ['translators-noor-digital-library']: { default: t240, functions: t240_functions },
+  ['translators-newspapers-com']: { default: t241, functions: t241_functions },
+  ['translators-newsnet-tamedia']: { default: t242, functions: t242_functions },
+  ['translators-newshub-co-nz']: { default: t243, functions: t243_functions },
+  ['translators-newsbank']: { default: t244, functions: t244_functions },
+  ['translators-news-corp-australia']: { default: t245, functions: t245_functions },
+  ['translators-newlines-magazine']: { default: t246, functions: t246_functions },
+  ['translators-new-zealand-herald']: { default: t247, functions: t247_functions },
+  ['translators-new-left-review']: { default: t248, functions: t248_functions },
+  ['translators-neural-information-processing-systems']: { default: t249, functions: t249_functions },
+  ['translators-ncbi-nucleotide']: { default: t250, functions: t250_functions },
+  ['translators-nature-publishing-group']: { default: t251, functions: t251_functions },
+  ['translators-national-transportation-library-rosa-p']: { default: t252, functions: t252_functions },
+  ['translators-national-technical-reports-library']: { default: t253, functions: t253_functions },
+  ['translators-national-post']: { default: t254, functions: t254_functions },
+  ['translators-national-library-of-norway']: { default: t255, functions: t255_functions },
+  ['translators-national-library-of-belarus']: { default: t256, functions: t256_functions },
+  ['translators-national-library-of-australia-new-catalog']: { default: t257, functions: t257_functions },
+  ['translators-national-gallery-of-australia']: { default: t258, functions: t258_functions },
+  ['translators-national-gallery-of-art-usa']: { default: t259, functions: t259_functions },
+  ['translators-national-diet-library-catalogue']: { default: t260, functions: t260_functions },
+  ['translators-national-bureau-of-economic-research']: { default: t261, functions: t261_functions },
+  ['translators-national-archives-of-south-africa']: { default: t262, functions: t262_functions },
+  ['translators-national-archives-of-australia']: { default: t263, functions: t263_functions },
+  ['translators-national-agriculture-library']: { default: t264, functions: t264_functions },
+  ['translators-national-academies-press']: { default: t265, functions: t265_functions },
+  ['translators-nasa-ntrs']: { default: t266, functions: t266_functions },
+  ['translators-nasa-ads']: { default: t267, functions: t267_functions },
+  ['translators-nagoya-university-opac']: { default: t268, functions: t268_functions },
+  ['translators-mus-e-du-louvre']: { default: t269, functions: t269_functions },
+  ['translators-mpg-pure']: { default: t270, functions: t270_functions },
+  ['translators-mit-press-books']: { default: t271, functions: t271_functions },
+  ['translators-milli-k-t-phane']: { default: t272, functions: t272_functions },
+  ['translators-mikromarc']: { default: t273, functions: t273_functions },
+  ['translators-midas-journals']: { default: t274, functions: t274_functions },
+  ['translators-microsoft-academic']: { default: t275, functions: t275_functions },
+  ['translators-microbiology-society-journals']: { default: t276, functions: t276_functions },
+  ['translators-metalib']: { default: t277, functions: t277_functions },
+  ['translators-medra']: { default: t278, functions: t278_functions },
+  ['translators-medium']: { default: t279, functions: t279_functions },
+  ['translators-medes']: { default: t280, functions: t280_functions },
+  ['translators-mdpi-journals']: { default: t281, functions: t281_functions },
+  ['translators-mcv']: { default: t282, functions: t282_functions },
+  ['translators-max-planck-institute-for-the-history-of-science-virtual-laboratory-library']: { default: t283, functions: t283_functions },
+  ['translators-matbugat-ru']: { default: t284, functions: t284_functions },
+  ['translators-marcxml']: { default: t285, functions: t285_functions },
+  ['translators-marc']: { default: t286, functions: t286_functions },
+  ['translators-mainichi-daily-news']: { default: t287, functions: t287_functions },
+  ['translators-magazines-russ-ru']: { default: t288, functions: t288_functions },
+  ['translators-mab2']: { default: t289, functions: t289_functions },
+  ['translators-lwn-net']: { default: t290, functions: t290_functions },
+  ['translators-lulu']: { default: t291, functions: t291_functions },
+  ['translators-lookus']: { default: t292, functions: t292_functions },
+  ['translators-london-review-of-books']: { default: t293, functions: t293_functions },
+  ['translators-livivo']: { default: t294, functions: t294_functions },
+  ['translators-livejournal']: { default: t295, functions: t295_functions },
+  ['translators-literary-hub']: { default: t296, functions: t296_functions },
+  ['translators-lippincott-williams-and-wilkins']: { default: t297, functions: t297_functions },
+  ['translators-lingbuzz']: { default: t298, functions: t298_functions },
+  ['translators-library-of-congress-digital-collections']: { default: t299, functions: t299_functions },
+  ['translators-library-hub-discover']: { default: t300, functions: t300_functions },
+  ['translators-library-catalog-vtls']: { default: t301, functions: t301_functions },
+  ['translators-library-catalog-voyager']: { default: t302, functions: t302_functions },
+  ['translators-library-catalog-voyager-7']: { default: t303, functions: t303_functions },
+  ['translators-library-catalog-visual-library-2021']: { default: t304, functions: t304_functions },
+  ['translators-library-catalog-tlc-youseemore']: { default: t305, functions: t305_functions },
+  ['translators-library-catalog-tinread']: { default: t306, functions: t306_functions },
+  ['translators-library-catalog-tind-ils']: { default: t307, functions: t307_functions },
+  ['translators-library-catalog-slims']: { default: t308, functions: t308_functions },
+  ['translators-library-catalog-sirsi']: { default: t309, functions: t309_functions },
+  ['translators-library-catalog-sirsi-elibrary']: { default: t310, functions: t310_functions },
+  ['translators-library-catalog-rero-ils']: { default: t311, functions: t311_functions },
+  ['translators-library-catalog-quolto']: { default: t312, functions: t312_functions },
+  ['translators-library-catalog-polaris']: { default: t313, functions: t313_functions },
+  ['translators-library-catalog-pika']: { default: t314, functions: t314_functions },
+  ['translators-library-catalog-pica2']: { default: t315, functions: t315_functions },
+  ['translators-library-catalog-pica']: { default: t316, functions: t316_functions },
+  ['translators-library-catalog-opals']: { default: t317, functions: t317_functions },
+  ['translators-library-catalog-mango']: { default: t318, functions: t318_functions },
+  ['translators-library-catalog-koha']: { default: t319, functions: t319_functions },
+  ['translators-library-catalog-innopac']: { default: t320, functions: t320_functions },
+  ['translators-library-catalog-encore']: { default: t321, functions: t321_functions },
+  ['translators-library-catalog-dynix']: { default: t322, functions: t322_functions },
+  ['translators-library-catalog-dra']: { default: t323, functions: t323_functions },
+  ['translators-library-catalog-capita-prism']: { default: t324, functions: t324_functions },
+  ['translators-library-catalog-blacklight']: { default: t325, functions: t325_functions },
+  ['translators-library-catalog-bibliocommons']: { default: t326, functions: t326_functions },
+  ['translators-library-catalog-aquabrowser']: { default: t327, functions: t327_functions },
+  ['translators-library-catalog-amicus']: { default: t328, functions: t328_functions },
+  ['translators-library-catalog-aleph']: { default: t329, functions: t329_functions },
+  ['translators-libraries-tasmania']: { default: t330, functions: t330_functions },
+  ['translators-lexisnexis']: { default: t331, functions: t331_functions },
+  ['translators-lexis']: { default: t332, functions: t332_functions },
+  ['translators-legislative-insight']: { default: t333, functions: t333_functions },
+  ['translators-le-monde']: { default: t334, functions: t334_functions },
+  ['translators-le-monde-diplomatique']: { default: t335, functions: t335_functions },
+  ['translators-le-maitron']: { default: t336, functions: t336_functions },
+  ['translators-le-figaro']: { default: t337, functions: t337_functions },
+  ['translators-le-devoir']: { default: t338, functions: t338_functions },
+  ['translators-lapham-s-quarterly']: { default: t339, functions: t339_functions },
+  ['translators-landesbibliographie-baden-w-rttemberg']: { default: t340, functions: t340_functions },
+  ['translators-lagen-nu']: { default: t341, functions: t341_functions },
+  ['translators-la-times']: { default: t342, functions: t342_functions },
+  ['translators-la-rep-blica-peru']: { default: t343, functions: t343_functions },
+  ['translators-la-presse']: { default: t344, functions: t344_functions },
+  ['translators-la-naci-n-argentina']: { default: t345, functions: t345_functions },
+  ['translators-la-croix']: { default: t346, functions: t346_functions },
+  ['translators-l-gifrance']: { default: t347, functions: t347_functions },
+  ['translators-l-ann-e-philologique']: { default: t348, functions: t348_functions },
+  ['translators-kstudy']: { default: t349, functions: t349_functions },
+  ['translators-korean-national-library']: { default: t350, functions: t350_functions },
+  ['translators-kommersant']: { default: t351, functions: t351_functions },
+  ['translators-kitapyurdu-com']: { default: t352, functions: t352_functions },
+  ['translators-khaama-press']: { default: t353, functions: t353_functions },
+  ['translators-kanopy']: { default: t354, functions: t354_functions },
+  ['translators-jurpc']: { default: t355, functions: t355_functions },
+  ['translators-juris']: { default: t356, functions: t356_functions },
+  ['translators-jurion']: { default: t357, functions: t357_functions },
+  ['translators-juricaf']: { default: t358, functions: t358_functions },
+  ['translators-jstor']: { default: t359, functions: t359_functions },
+  ['translators-jrc-publications-repository']: { default: t360, functions: t360_functions },
+  ['translators-journal-of-religion-and-society']: { default: t361, functions: t361_functions },
+  ['translators-journal-of-machine-learning-research']: { default: t362, functions: t362_functions },
+  ['translators-journal-of-extension']: { default: t363, functions: t363_functions },
+  ['translators-journal-of-electronic-publishing']: { default: t364, functions: t364_functions },
+  ['translators-jisc-historical-texts']: { default: t365, functions: t365_functions },
+  ['translators-jets']: { default: t366, functions: t366_functions },
+  ['translators-japan-times-online']: { default: t367, functions: t367_functions },
+  ['translators-jahrbuch']: { default: t368, functions: t368_functions },
+  ['translators-j-stage']: { default: t369, functions: t369_functions },
+  ['translators-isidore']: { default: t370, functions: t370_functions },
+  ['translators-ipcc']: { default: t371, functions: t371_functions },
+  ['translators-io-port']: { default: t372, functions: t372_functions },
+  ['translators-inveniordm']: { default: t373, functions: t373_functions },
+  ['translators-internet-archive']: { default: t374, functions: t374_functions },
+  ['translators-internet-archive-wayback-machine']: { default: t375, functions: t375_functions },
+  ['translators-internet-archive-scholar']: { default: t376, functions: t376_functions },
+  ['translators-international-nuclear-information-system']: { default: t377, functions: t377_functions },
+  ['translators-inter-research-science-center']: { default: t378, functions: t378_functions },
+  ['translators-intellixir']: { default: t379, functions: t379_functions },
+  ['translators-integrum']: { default: t380, functions: t380_functions },
+  ['translators-institute-of-physics']: { default: t381, functions: t381_functions },
+  ['translators-institute-of-contemporary-art']: { default: t382, functions: t382_functions },
+  ['translators-inspire']: { default: t383, functions: t383_functions },
+  ['translators-insignia-opac']: { default: t384, functions: t384_functions },
+  ['translators-inside-higher-ed']: { default: t385, functions: t385_functions },
+  ['translators-ingentaconnect']: { default: t386, functions: t386_functions },
+  ['translators-infotrac']: { default: t387, functions: t387_functions },
+  ['translators-informit-database']: { default: t388, functions: t388_functions },
+  ['translators-informationssystem-medienpaedagogik']: { default: t389, functions: t389_functions },
+  ['translators-in-these-times']: { default: t390, functions: t390_functions },
+  ['translators-imdb']: { default: t391, functions: t391_functions },
+  ['translators-ign']: { default: t392, functions: t392_functions },
+  ['translators-ietf']: { default: t393, functions: t393_functions },
+  ['translators-ieee-xplore']: { default: t394, functions: t394_functions },
+  ['translators-ieee-computer-society']: { default: t395, functions: t395_functions },
+  ['translators-idref']: { default: t396, functions: t396_functions },
+  ['translators-idea-alm']: { default: t397, functions: t397_functions },
+  ['translators-ibisworld']: { default: t398, functions: t398_functions },
+  ['translators-human-rights-watch']: { default: t399, functions: t399_functions },
+  ['translators-huff-post']: { default: t400, functions: t400_functions },
+  ['translators-hudoc']: { default: t401, functions: t401_functions },
+  ['translators-homeland-security-digital-library']: { default: t402, functions: t402_functions },
+  ['translators-hlas-historical']: { default: t403, functions: t403_functions },
+  ['translators-hispanic-american-periodical-index']: { default: t404, functions: t404_functions },
+  ['translators-hindawi-publishers']: { default: t405, functions: t405_functions },
+  ['translators-highwire']: { default: t406, functions: t406_functions },
+  ['translators-highwire-2-0']: { default: t407, functions: t407_functions },
+  ['translators-highbeam']: { default: t408, functions: t408_functions },
+  ['translators-herder']: { default: t409, functions: t409_functions },
+  ['translators-heise']: { default: t410, functions: t410_functions },
+  ['translators-heinonline']: { default: t411, functions: t411_functions },
+  ['translators-hcsp']: { default: t412, functions: t412_functions },
+  ['translators-hathitrust']: { default: t413, functions: t413_functions },
+  ['translators-harvard-university-press-books']: { default: t414, functions: t414_functions },
+  ['translators-harvard-caselaw-access-project']: { default: t415, functions: t415_functions },
+  ['translators-harvard-business-review']: { default: t416, functions: t416_functions },
+  ['translators-harper-s-magazine']: { default: t417, functions: t417_functions },
+  ['translators-hanrei-watch-rss-service']: { default: t418, functions: t418_functions },
+  ['translators-handelszeitung']: { default: t419, functions: t419_functions },
+  ['translators-hal-archives-ouvertes']: { default: t420, functions: t420_functions },
+  ['translators-haaretz']: { default: t421, functions: t421_functions },
+  ['translators-gulag-many-days-many-lives']: { default: t422, functions: t422_functions },
+  ['translators-gpo-access-e-cfr']: { default: t423, functions: t423_functions },
+  ['translators-govinfo']: { default: t424, functions: t424_functions },
+  ['translators-google-scholar']: { default: t425, functions: t425_functions },
+  ['translators-google-research']: { default: t426, functions: t426_functions },
+  ['translators-google-presentation']: { default: t427, functions: t427_functions },
+  ['translators-google-play']: { default: t428, functions: t428_functions },
+  ['translators-google-patents']: { default: t429, functions: t429_functions },
+  ['translators-google-books']: { default: t430, functions: t430_functions },
+  ['translators-goodreads']: { default: t431, functions: t431_functions },
+  ['translators-gms-german-medical-science']: { default: t432, functions: t432_functions },
+  ['translators-gmail']: { default: t433, functions: t433_functions },
+  ['translators-globes']: { default: t434, functions: t434_functions },
+  ['translators-github']: { default: t435, functions: t435_functions },
+  ['translators-gene-ontology']: { default: t436, functions: t436_functions },
+  ['translators-gasyrlar-awazy']: { default: t437, functions: t437_functions },
+  ['translators-gamestar-gamepro']: { default: t438, functions: t438_functions },
+  ['translators-gamespot']: { default: t439, functions: t439_functions },
+  ['translators-game-studies']: { default: t440, functions: t440_functions },
+  ['translators-gallica']: { default: t441, functions: t441_functions },
+  ['translators-galegroup']: { default: t442, functions: t442_functions },
+  ['translators-galegdc']: { default: t443, functions: t443_functions },
+  ['translators-gale-databases']: { default: t444, functions: t444_functions },
+  ['translators-frontiers']: { default: t445, functions: t445_functions },
+  ['translators-frieze']: { default: t446, functions: t446_functions },
+  ['translators-freepatentsonline']: { default: t447, functions: t447_functions },
+  ['translators-freecite']: { default: t448, functions: t448_functions },
+  ['translators-fr-online-de']: { default: t449, functions: t449_functions },
+  ['translators-foreign-policy']: { default: t450, functions: t450_functions },
+  ['translators-foreign-affairs']: { default: t451, functions: t451_functions },
+  ['translators-flickr']: { default: t452, functions: t452_functions },
+  ['translators-fishpond-co-nz']: { default: t453, functions: t453_functions },
+  ['translators-finna']: { default: t454, functions: t454_functions },
+  ['translators-financial-times']: { default: t455, functions: t455_functions },
+  ['translators-figshare']: { default: t456, functions: t456_functions },
+  ['translators-feb-web-ru']: { default: t457, functions: t457_functions },
+  ['translators-faz-net']: { default: t458, functions: t458_functions },
+  ['translators-fatcat']: { default: t459, functions: t459_functions },
+  ['translators-fao-publications']: { default: t460, functions: t460_functions },
+  ['translators-fairfax-australia']: { default: t461, functions: t461_functions },
+  ['translators-failed-architecture']: { default: t462, functions: t462_functions },
+  ['translators-factiva']: { default: t463, functions: t463_functions },
+  ['translators-fachportal-p-dagogik']: { default: t464, functions: t464_functions },
+  ['translators-f1000-research']: { default: t465, functions: t465_functions },
+  ['translators-europe-pmc']: { default: t466, functions: t466_functions },
+  ['translators-eurogamer-usgamer']: { default: t467, functions: t467_functions },
+  ['translators-eurasianet']: { default: t468, functions: t468_functions },
+  ['translators-eur-lex']: { default: t469, functions: t469_functions },
+  ['translators-euclid']: { default: t470, functions: t470_functions },
+  ['translators-etatar-ru']: { default: t471, functions: t471_functions },
+  ['translators-espacenet']: { default: t472, functions: t472_functions },
+  ['translators-erudit']: { default: t473, functions: t473_functions },
+  ['translators-eric']: { default: t474, functions: t474_functions },
+  ['translators-eprint-iacr']: { default: t475, functions: t475_functions },
+  ['translators-epicurious']: { default: t476, functions: t476_functions },
+  ['translators-epa-national-library-catalog']: { default: t477, functions: t477_functions },
+  ['translators-envidat']: { default: t478, functions: t478_functions },
+  ['translators-engineering-village']: { default: t479, functions: t479_functions },
+  ['translators-encyclopedia-of-korean-culture']: { default: t480, functions: t480_functions },
+  ['translators-encyclopedia-of-chicago']: { default: t481, functions: t481_functions },
+  ['translators-emja']: { default: t482, functions: t482_functions },
+  ['translators-emerald-insight']: { default: t483, functions: t483_functions },
+  ['translators-emedicine']: { default: t484, functions: t484_functions },
+  ['translators-elsevier-health-journals']: { default: t485, functions: t485_functions },
+  ['translators-elife']: { default: t486, functions: t486_functions },
+  ['translators-elicit']: { default: t487, functions: t487_functions },
+  ['translators-elibrary-ru']: { default: t488, functions: t488_functions },
+  ['translators-electronic-colloquium-on-computational-complexity']: { default: t489, functions: t489_functions },
+  ['translators-el-pais']: { default: t490, functions: t490_functions },
+  ['translators-el-comercio-per']: { default: t491, functions: t491_functions },
+  ['translators-education-week']: { default: t492, functions: t492_functions },
+  ['translators-edinburgh-university-press-journals']: { default: t493, functions: t493_functions },
+  ['translators-ebscohost']: { default: t494, functions: t494_functions },
+  ['translators-ebsco-discovery-layer']: { default: t495, functions: t495_functions },
+  ['translators-ebrary']: { default: t496, functions: t496_functions },
+  ['translators-eastview']: { default: t497, functions: t497_functions },
+  ['translators-e-periodica-switzerland']: { default: t498, functions: t498_functions },
+  ['translators-duke-university-press-books']: { default: t499, functions: t499_functions },
+  ['translators-dspace-intermediate-metadata']: { default: t500, functions: t500_functions },
+  ['translators-dryad-digital-repository']: { default: t501, functions: t501_functions },
+  ['translators-drugbank-ca']: { default: t502, functions: t502_functions },
+  ['translators-dreier-neuerscheinungsdienst']: { default: t503, functions: t503_functions },
+  ['translators-dpla']: { default: t504, functions: t504_functions },
+  ['translators-douban']: { default: t505, functions: t505_functions },
+  ['translators-doi']: { default: t506, functions: t506_functions },
+  ['translators-doaj']: { default: t507, functions: t507_functions },
+  ['translators-dlibra']: { default: t508, functions: t508_functions },
+  ['translators-dimensions']: { default: t509, functions: t509_functions },
+  ['translators-digizeitschriften']: { default: t510, functions: t510_functions },
+  ['translators-digital-spy']: { default: t511, functions: t511_functions },
+  ['translators-digital-humanities-quarterly']: { default: t512, functions: t512_functions },
+  ['translators-digibib-net']: { default: t513, functions: t513_functions },
+  ['translators-die-zeit']: { default: t514, functions: t514_functions },
+  ['translators-dialnet']: { default: t515, functions: t515_functions },
+  ['translators-dhistory']: { default: t516, functions: t516_functions },
+  ['translators-deutsche-nationalbibliothek']: { default: t517, functions: t517_functions },
+  ['translators-deutsche-fotothek']: { default: t518, functions: t518_functions },
+  ['translators-desiring-god']: { default: t519, functions: t519_functions },
+  ['translators-der-spiegel']: { default: t520, functions: t520_functions },
+  ['translators-der-freitag']: { default: t521, functions: t521_functions },
+  ['translators-depatisnet']: { default: t522, functions: t522_functions },
+  ['translators-denik-cz']: { default: t523, functions: t523_functions },
+  ['translators-demographic-research']: { default: t524, functions: t524_functions },
+  ['translators-delpher']: { default: t525, functions: t525_functions },
+  ['translators-dejure-org']: { default: t526, functions: t526_functions },
+  ['translators-defense-technical-information-center']: { default: t527, functions: t527_functions },
+  ['translators-de-gruyter']: { default: t528, functions: t528_functions },
+  ['translators-dbpia']: { default: t529, functions: t529_functions },
+  ['translators-dblp-computer-science-bibliography']: { default: t530, functions: t530_functions },
+  ['translators-daum-news']: { default: t531, functions: t531_functions },
+  ['translators-dataverse']: { default: t532, functions: t532_functions },
+  ['translators-datacite-json']: { default: t533, functions: t533_functions },
+  ['translators-databrary']: { default: t534, functions: t534_functions },
+  ['translators-data-gov']: { default: t535, functions: t535_functions },
+  ['translators-dart-europe']: { default: t536, functions: t536_functions },
+  ['translators-dar-almandumah']: { default: t537, functions: t537_functions },
+  ['translators-dai-zenon']: { default: t538, functions: t538_functions },
+  ['translators-dagstuhl-research-online-publication-server']: { default: t539, functions: t539_functions },
+  ['translators-dagens-nyheter']: { default: t540, functions: t540_functions },
+  ['translators-dabi']: { default: t541, functions: t541_functions },
+  ['translators-current-affairs']: { default: t542, functions: t542_functions },
+  ['translators-csiro-publishing']: { default: t543, functions: t543_functions },
+  ['translators-crosbi']: { default: t544, functions: t544_functions },
+  ['translators-cq-press']: { default: t545, functions: t545_functions },
+  ['translators-courtlistener']: { default: t546, functions: t546_functions },
+  ['translators-cornell-university-press']: { default: t547, functions: t547_functions },
+  ['translators-cornell-lii']: { default: t548, functions: t548_functions },
+  ['translators-copernicus']: { default: t549, functions: t549_functions },
+  ['translators-computer-history-museum-archive']: { default: t550, functions: t550_functions },
+  ['translators-common-place']: { default: t551, functions: t551_functions },
+  ['translators-columbia-university-press']: { default: t552, functions: t552_functions },
+  ['translators-colorado-state-legislature']: { default: t553, functions: t553_functions },
+  ['translators-code4lib-journal']: { default: t554, functions: t554_functions },
+  ['translators-cobiss']: { default: t555, functions: t555_functions },
+  ['translators-cnki']: { default: t556, functions: t556_functions },
+  ['translators-clinicaltrials-gov']: { default: t557, functions: t557_functions },
+  ['translators-clinical-key']: { default: t558, functions: t558_functions },
+  ['translators-climate-change-and-human-health-literature-portal']: { default: t559, functions: t559_functions },
+  ['translators-clase']: { default: t560, functions: t560_functions },
+  ['translators-clacso']: { default: t561, functions: t561_functions },
+  ['translators-civilization-ca']: { default: t562, functions: t562_functions },
+  ['translators-citizen-lab']: { default: t563, functions: t563_functions },
+  ['translators-citeseer']: { default: t564, functions: t564_functions },
+  ['translators-cinii-research']: { default: t565, functions: t565_functions },
+  ['translators-cia-world-factbook']: { default: t566, functions: t566_functions },
+  ['translators-chronicling-america']: { default: t567, functions: t567_functions },
+  ['translators-christian-science-monitor']: { default: t568, functions: t568_functions },
+  ['translators-champlain-society-collection']: { default: t569, functions: t569_functions },
+  ['translators-cff']: { default: t570, functions: t570_functions },
+  ['translators-cff-references']: { default: t571, functions: t571_functions },
+  ['translators-ceur-workshop-proceedings']: { default: t572, functions: t572_functions },
+  ['translators-cern-document-server']: { default: t573, functions: t573_functions },
+  ['translators-central-and-eastern-european-online-library-journals']: { default: t574, functions: t574_functions },
+  ['translators-cell-press']: { default: t575, functions: t575_functions },
+  ['translators-ccfr-bnf']: { default: t576, functions: t576_functions },
+  ['translators-cbc']: { default: t577, functions: t577_functions },
+  ['translators-cascadilla-proceedings-project']: { default: t578, functions: t578_functions },
+  ['translators-caod']: { default: t579, functions: t579_functions },
+  ['translators-canlii']: { default: t580, functions: t580_functions },
+  ['translators-canadiana-ca']: { default: t581, functions: t581_functions },
+  ['translators-canadian-letters-and-images']: { default: t582, functions: t582_functions },
+  ['translators-canada-com']: { default: t583, functions: t583_functions },
+  ['translators-cambridge-engage-preprints']: { default: t584, functions: t584_functions },
+  ['translators-cambridge-core']: { default: t585, functions: t585_functions },
+  ['translators-calmatters']: { default: t586, functions: t586_functions },
+  ['translators-calisphere']: { default: t587, functions: t587_functions },
+  ['translators-cairn-info']: { default: t588, functions: t588_functions },
+  ['translators-cabi-cab-abstracts']: { default: t589, functions: t589_functions },
+  ['translators-business-standard']: { default: t590, functions: t590_functions },
+  ['translators-bundesgesetzblatt']: { default: t591, functions: t591_functions },
+  ['translators-bryn-mawr-classical-review']: { default: t592, functions: t592_functions },
+  ['translators-brukerh-ndboken']: { default: t593, functions: t593_functions },
+  ['translators-brill']: { default: t594, functions: t594_functions },
+  ['translators-bracero-history-archive']: { default: t595, functions: t595_functions },
+  ['translators-bosworth-toller-s-anglo-saxon-dictionary-online']: { default: t596, functions: t596_functions },
+  ['translators-boston-review']: { default: t597, functions: t597_functions },
+  ['translators-bookshop-org']: { default: t598, functions: t598_functions },
+  ['translators-bookmarks']: { default: t599, functions: t599_functions },
+  ['translators-bofip-imp-ts']: { default: t600, functions: t600_functions },
+  ['translators-boe']: { default: t601, functions: t601_functions },
+  ['translators-bocc']: { default: t602, functions: t602_functions },
+  ['translators-bluesky']: { default: t603, functions: t603_functions },
+  ['translators-bloomsbury-food-library']: { default: t604, functions: t604_functions },
+  ['translators-bloomberg']: { default: t605, functions: t605_functions },
+  ['translators-blogger']: { default: t606, functions: t606_functions },
+  ['translators-blaetter-fuer-deutsche-und-internationale-politik']: { default: t607, functions: t607_functions },
+  ['translators-bioone']: { default: t608, functions: t608_functions },
+  ['translators-biomed-central']: { default: t609, functions: t609_functions },
+  ['translators-bioconductor']: { default: t610, functions: t610_functions },
+  ['translators-bibsys']: { default: t611, functions: t611_functions },
+  ['translators-bibliotheque-et-archives-nationale-du-quebec-pistard']: { default: t612, functions: t612_functions },
+  ['translators-biblioth-que-nationale-de-france']: { default: t613, functions: t613_functions },
+  ['translators-biblioth-que-et-archives-nationales-du-qu-bec']: { default: t614, functions: t614_functions },
+  ['translators-biblioteca-nacional-de-maestros']: { default: t615, functions: t615_functions },
+  ['translators-biblio-com']: { default: t616, functions: t616_functions },
+  ['translators-bezneng-gajit']: { default: t617, functions: t617_functions },
+  ['translators-beobachter']: { default: t618, functions: t618_functions },
+  ['translators-beck-online']: { default: t619, functions: t619_functions },
+  ['translators-bbc']: { default: t620, functions: t620_functions },
+  ['translators-bbc-genome']: { default: t621, functions: t621_functions },
+  ['translators-baruch-foundation']: { default: t622, functions: t622_functions },
+  ['translators-bangkok-post']: { default: t623, functions: t623_functions },
+  ['translators-bailii']: { default: t624, functions: t624_functions },
+  ['translators-baidu-scholar']: { default: t625, functions: t625_functions },
+  ['translators-australian-dictionary-of-biography']: { default: t626, functions: t626_functions },
+  ['translators-austlii-and-nzlii']: { default: t627, functions: t627_functions },
+  ['translators-atypon-journals']: { default: t628, functions: t628_functions },
+  ['translators-ats-international-journal']: { default: t629, functions: t629_functions },
+  ['translators-atlanta-journal-constitution']: { default: t630, functions: t630_functions },
+  ['translators-astis']: { default: t631, functions: t631_functions },
+  ['translators-asco-meeting-library']: { default: t632, functions: t632_functions },
+  ['translators-asce']: { default: t633, functions: t633_functions },
+  ['translators-arxiv-vanity']: { default: t634, functions: t634_functions },
+  ['translators-arxiv-org']: { default: t635, functions: t635_functions },
+  ['translators-artstor']: { default: t636, functions: t636_functions },
+  ['translators-artnews']: { default: t637, functions: t637_functions },
+  ['translators-artnet']: { default: t638, functions: t638_functions },
+  ['translators-artforum']: { default: t639, functions: t639_functions },
+  ['translators-artfl-encyclopedie']: { default: t640, functions: t640_functions },
+  ['translators-artefacts-canada']: { default: t641, functions: t641_functions },
+  ['translators-art-institute-of-chicago']: { default: t642, functions: t642_functions },
+  ['translators-ariana-news']: { default: t643, functions: t643_functions },
+  ['translators-archives-canada']: { default: t644, functions: t644_functions },
+  ['translators-archive-ouverte-en-sciences-de-l-information-et-de-la-communication-aosic']: { default: t645, functions: t645_functions },
+  ['translators-archiv-fuer-sozialgeschichte']: { default: t646, functions: t646_functions },
+  ['translators-archeion']: { default: t647, functions: t647_functions },
+  ['translators-aquadocs']: { default: t648, functions: t648_functions },
+  ['translators-aps']: { default: t649, functions: t649_functions },
+  ['translators-aps-physics']: { default: t650, functions: t650_functions },
+  ['translators-apn-ru']: { default: t651, functions: t651_functions },
+  ['translators-apa-psycnet']: { default: t652, functions: t652_functions },
+  ['translators-antikvarium-hu']: { default: t653, functions: t653_functions },
+  ['translators-annual-reviews']: { default: t654, functions: t654_functions },
+  ['translators-ancestry-com-us-federal-census']: { default: t655, functions: t655_functions },
+  ['translators-ams-mathscinet']: { default: t656, functions: t656_functions },
+  ['translators-ams-mathscinet-legacy']: { default: t657, functions: t657_functions },
+  ['translators-ams-journals']: { default: t658, functions: t658_functions },
+  ['translators-american-prospect']: { default: t659, functions: t659_functions },
+  ['translators-american-institute-of-aeronautics-and-astronautics']: { default: t660, functions: t660_functions },
+  ['translators-american-archive-of-public-broadcasting']: { default: t661, functions: t661_functions },
+  ['translators-amazon']: { default: t662, functions: t662_functions },
+  ['translators-aluka']: { default: t663, functions: t663_functions },
+  ['translators-alternet']: { default: t664, functions: t664_functions },
+  ['translators-alsharekh']: { default: t665, functions: t665_functions },
+  ['translators-allafrica']: { default: t666, functions: t666_functions },
+  ['translators-alexander-street-press']: { default: t667, functions: t667_functions },
+  ['translators-airiti']: { default: t668, functions: t668_functions },
+  ['translators-air-university-journals']: { default: t669, functions: t669_functions },
+  ['translators-aip']: { default: t670, functions: t670_functions },
+  ['translators-ahval-news']: { default: t671, functions: t671_functions },
+  ['translators-agris']: { default: t672, functions: t672_functions },
+  ['translators-agencia-del-isbn']: { default: t673, functions: t673_functions },
+  ['translators-aea-web']: { default: t674, functions: t674_functions },
+  ['translators-adam-matthew-digital']: { default: t675, functions: t675_functions },
+  ['translators-acs-publications']: { default: t676, functions: t676_functions },
+  ['translators-acm-digital-library']: { default: t677, functions: t677_functions },
+  ['translators-aclweb']: { default: t678, functions: t678_functions },
+  ['translators-acls-humanities-ebook']: { default: t679, functions: t679_functions },
+  ['translators-access-science']: { default: t680, functions: t680_functions },
+  ['translators-access-medicine']: { default: t681, functions: t681_functions },
+  ['translators-access-engineering']: { default: t682, functions: t682_functions },
+  ['translators-abc-news-australia']: { default: t683, functions: t683_functions },
+  ['translators-ab-imperio']: { default: t684, functions: t684_functions }};
