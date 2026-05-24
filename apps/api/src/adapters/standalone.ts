@@ -1,7 +1,7 @@
 import cors from 'cors';
 import { createHTTPServer } from '@trpc/server/adapters/standalone';
-import { implementedRouter } from '../router/index';
-import { createContext } from '../context';
+import { implementedRouter } from '../router/index.js';
+import { createContext } from '../context.js';
 
 const corsHandler = cors();
 
