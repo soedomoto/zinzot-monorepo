@@ -2,14 +2,16 @@ import cors from 'cors';
 import { createHTTPServer } from '@trpc/server/adapters/standalone';
 import { implementedRouter } from '../router/index.js';
 import { createContext } from '../context.js';
+import type { IncomingMessage, ServerResponse } from 'http';
 
 const corsHandler = cors();
 
 const server = createHTTPServer({
   router: implementedRouter,
   createContext,
-  middleware: (req, res, next) => {
-    corsHandler(req as any, res as any, (err) => {
+  middleware: (req: IncomingMessage, res: ServerResponse, next: (err?: unknown) => void) => {
+    // cors expects Express-like req/res, we cast to any for runtime compatibility
+    corsHandler(req as any, res as any, (err: unknown) => {
       if (err) return next(err);
       next();
     });
