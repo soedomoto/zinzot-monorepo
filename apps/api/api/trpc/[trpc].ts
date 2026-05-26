@@ -6,5 +6,8 @@ export const config = {
 };
 
 export default function trpcEndpoint(req: Request) {
-  return handler(req);
+  // Vercel nodejs runtime passes a relative url. We need an absolute URL
+  const url = new URL(req.url, `http://${req.headers.get('host') || 'localhost'}`);
+  const request = new Request(url, req);
+  return handler(request);
 }
