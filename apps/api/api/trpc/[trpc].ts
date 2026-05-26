@@ -1,13 +1,20 @@
-import { handler } from '../../src/adapters/fetch.js';
+import { nodeHTTPRequestHandler } from '@trpc/server/adapters/node-http';
+import { implementedRouter } from '../../src/router/index.js';
+import { createContext } from '../../src/context.js';
 
-// This is the magic export that tells Vercel to use the Edge runtime
 export const config = {
   runtime: 'nodejs',
 };
 
-export default function trpcEndpoint(req: Request) {
-  // Vercel nodejs runtime passes a relative url. We need an absolute URL
-  const url = new URL(req.url, `http://${req.headers.get('host') || 'localhost'}`);
-  const request = new Request(url, req);
-  return handler(request);
+export default async function trpcEndpoint(req: any, res: any) {
+  // Extract path matching '/api/trpc/...' from the url
+  const path = req.url?.split('/api/trpc/').pop()?.split('?')[0] || '';
+
+  return nodeHTTPRequestHandler({
+    router: implementedRouter,
+    createContext: () => createContext(),
+    req,
+    res,
+    path,
+  });
 }
