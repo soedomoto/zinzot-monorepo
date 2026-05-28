@@ -1,7 +1,7 @@
 import cors from 'cors';
 import { createHTTPServer } from '@trpc/server/adapters/standalone';
 import { implementedRouter } from '../router/index.js';
-import { createContext } from '../context.js';
+import { createContext } from '@zinzot/contracts';
 import type { IncomingMessage, ServerResponse } from 'http';
 
 const corsHandler = cors();

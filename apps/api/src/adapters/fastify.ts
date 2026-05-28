@@ -2,7 +2,7 @@ import fastify from 'fastify';
 import cors from '@fastify/cors';
 import { fastifyTRPCPlugin } from '@trpc/server/adapters/fastify';
 import { implementedRouter } from '../router/index.js';
-import { createContext } from '../context.js';
+import { createContext } from '@zinzot/contracts';
 
 const app = fastify();
 

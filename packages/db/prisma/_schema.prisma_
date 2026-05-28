@@ -1,0 +1,376 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum AnnotationType {
+  HIGHLIGHT
+  UNDERLINE
+  STRIKETHROUGH
+}
+
+model UserCollectionLibraryAssociation {
+  id           Int @id @default(autoincrement())
+  collectionId Int
+  libraryId    Int
+
+  collection UserCollection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+  library    UserLibrary    @relation(fields: [libraryId], references: [id], onDelete: Cascade)
+
+  @@unique([collectionId, libraryId], name: "idx_collection_library_unique")
+  @@index([collectionId])
+  @@index([libraryId])
+  @@map("user_collection_library_association")
+}
+
+model DoiContributor {
+  id                  Int     @id @default(autoincrement())
+  version             Int     @default(1)
+  researchReferenceId Int
+  contributorType     String
+  given               String?
+  family              String?
+  name                String?
+  sequence            String?
+  affiliation         String?
+  orcid               String?
+  authenticatedOrcid  Boolean?
+
+  researchReference DoiMetadata @relation(fields: [researchReferenceId], references: [id], onDelete: Cascade)
+
+  @@index([researchReferenceId, contributorType], name: "idx_doi_contributor_ref_type")
+  @@index([family])
+  @@map("doi_contributors")
+}
+
+model DoiDateInfo {
+  id                  Int     @id @default(autoincrement())
+  version             Int     @default(1)
+  researchReferenceId Int
+  dateType            String
+  date                String?
+  timestamp           Int?
+  dateParts           String?
+  dateTime            String?
+  versionField        String?
+
+  researchReference DoiMetadata @relation(fields: [researchReferenceId], references: [id], onDelete: Cascade)
+
+  @@map("doi_date_infos")
+}
+
+model DoiISSNType {
+  id                  Int     @id @default(autoincrement())
+  version             Int     @default(1)
+  researchReferenceId Int
+  type                String?
+  description         String?
+  value               String?
+
+  researchReference DoiMetadata @relation(fields: [researchReferenceId], references: [id], onDelete: Cascade)
+
+  @@index([value])
+  @@map("doi_issn_types")
+}
+
+model DoiLicense {
+  id                  Int     @id @default(autoincrement())
+  version             Int     @default(1)
+  researchReferenceId Int
+  start               String?
+  end                 String?
+  url                 String?
+  identifier          String?
+  type                String?
+  contentVersion      String?
+  delayInDays         Int?
+
+  researchReference DoiMetadata @relation(fields: [researchReferenceId], references: [id], onDelete: Cascade)
+
+  @@map("doi_licenses")
+}
+
+model DoiFunder {
+  id                  Int     @id @default(autoincrement())
+  version             Int     @default(1)
+  researchReferenceId Int
+  name                String?
+  identifier          String?
+
+  researchReference DoiMetadata @relation(fields: [researchReferenceId], references: [id], onDelete: Cascade)
+
+  @@map("doi_funders")
+}
+
+model DoiReference {
+  id                  Int     @id @default(autoincrement())
+  version             Int     @default(1)
+  researchReferenceId Int
+  doi                 String?
+  url                 String?
+  title               String?
+  author              String?
+  publisher           String?
+  publishedDate       String?
+  key                 String?
+  doiAssertedBy       String?
+  firstPage           String?
+  volume              String?
+  volumeTitle         String?
+  year                String?
+  unstructured        String?
+  journalTitle        String?
+  edition             String?
+
+  researchReference DoiMetadata @relation(fields: [researchReferenceId], references: [id], onDelete: Cascade)
+
+  @@map("doi_references")
+}
+
+model DoiLink {
+  id                   Int     @id @default(autoincrement())
+  version              Int     @default(1)
+  researchReferenceId  Int
+  url                  String?
+  rel                  String?
+  mediaType            String?
+  contentType          String?
+  contentVersion       String?
+  intendedApplication  String?
+
+  researchReference DoiMetadata @relation(fields: [researchReferenceId], references: [id], onDelete: Cascade)
+
+  @@map("doi_links")
+}
+
+model DoiAssertion {
+  id                  Int     @id @default(autoincrement())
+  version             Int     @default(1)
+  researchReferenceId Int
+  description         String?
+  url                 String?
+  identifier          String?
+
+  researchReference DoiMetadata @relation(fields: [researchReferenceId], references: [id], onDelete: Cascade)
+
+  @@map("doi_assertions")
+}
+
+model DoiAttachment {
+  id                  Int     @id @default(autoincrement())
+  version             Int     @default(1)
+  researchReferenceId Int
+  url                 String?
+  title               String?
+  mimeType            String?
+  hash                String?
+  content             String?
+
+  researchReference DoiMetadata @relation(fields: [researchReferenceId], references: [id], onDelete: Cascade)
+
+  @@index([hash])
+  @@map("doi_attachments")
+}
+
+model DoiJournalIssue {
+  id                  Int     @id @default(autoincrement())
+  version             Int     @default(1)
+  researchReferenceId Int     @unique
+  issue               String?
+  publishedPrint      String?
+
+  researchReference DoiMetadata @relation(fields: [researchReferenceId], references: [id], onDelete: Cascade)
+
+  @@map("doi_journal_issues")
+}
+
+model DoiStringArray {
+  id                  Int     @id @default(autoincrement())
+  version             Int     @default(1)
+  researchReferenceId Int
+  arrayType           String
+  value               String
+
+  researchReference DoiMetadata @relation(fields: [researchReferenceId], references: [id], onDelete: Cascade)
+
+  @@index([value])
+  @@map("doi_string_arrays")
+}
+
+model DoiMetadata {
+  id                    Int      @id @default(autoincrement())
+  version               Int      @default(1)
+  sourceUrl             String
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+  doi                   String?
+  title                 String?
+  originalTitle         String?
+  subtitle              String?
+  shortTitle            String?
+  type                  String?
+  url                   String?
+  abstract              String?
+  publicationTitle      String?
+  journal               String?
+  volume                String?
+  issue                 String?
+  articleNumber         String?
+  specialNumbering      String?
+  page                  String?
+  firstPage             String?
+  lastPage              String?
+  publishedDate         String?
+  publishedPrintYear    Int?
+  publishedOnlineYear   Int?
+  alternativeId         String?
+  alternateDoi          String?
+  publisher             String?
+  source                String?
+  member                String?
+  prefix                String?
+  publisherPlace        String?
+  language              String?
+  referenceCount        Int?
+  referencesCount       Int?
+  isReferencedByCount   Int?
+  citedByRelationCount  Int?
+  updatePolicy          String?
+  contentDomain         String?
+  relation              String?
+  resource              String?
+  score                 Float?
+
+  contributors   DoiContributor[]
+  dateInfos      DoiDateInfo[]
+  issnTypes      DoiISSNType[]
+  licenses       DoiLicense[]
+  funders        DoiFunder[]
+  references     DoiReference[]
+  links          DoiLink[]
+  assertions     DoiAssertion[]
+  attachments    DoiAttachment[]
+  journalIssue   DoiJournalIssue?
+  stringArrays   DoiStringArray[]
+  userLibraries  UserLibrary[]
+
+  @@index([doi])
+  @@index([url])
+  @@index([createdAt])
+  @@index([sourceUrl])
+  @@index([id])
+  @@index([title])
+  @@index([type])
+  @@index([publisher])
+  @@index([publicationTitle])
+  @@index([publishedDate])
+  @@index([publishedOnlineYear])
+  @@index([publishedPrintYear])
+  @@index([id, version])
+  @@map("doi_metadata")
+}
+
+model UserLibraryAnnotation {
+  id             Int             @id @default(autoincrement())
+  version        Int             @default(1)
+  parentId       Int?
+  rootId         Int?
+  userLibraryId  Int
+  pageNumber     Int?
+  originalContent String?
+  comment        String?
+  color          String?
+  type           AnnotationType?
+  rects          Json?
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+
+  userLibrary UserLibrary              @relation(fields: [userLibraryId], references: [id], onDelete: Cascade)
+  parent      UserLibraryAnnotation?   @relation("ParentChild", fields: [parentId], references: [id], onDelete: Cascade)
+  children    UserLibraryAnnotation[]  @relation("ParentChild")
+  root        UserLibraryAnnotation?   @relation("RootAnnotation", fields: [rootId], references: [id])
+  roots       UserLibraryAnnotation[]  @relation("RootAnnotation")
+
+  @@index([userLibraryId])
+  @@index([parentId])
+  @@index([rootId])
+  @@map("user_library_annotations")
+}
+
+model User {
+  id         Int      @id @default(autoincrement())
+  version    Int      @default(1)
+  email      String   @unique
+  name       String?
+  pictureUrl String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  sessions    UserSession[]
+  libraries   UserLibrary[]
+  collections UserCollection[]
+
+  @@index([email])
+  @@index([createdAt])
+  @@map("users")
+}
+
+model UserSession {
+  id        Int      @id @default(autoincrement())
+  version   Int      @default(1)
+  userId    Int
+  token     String   @unique
+  expires   DateTime
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([token])
+  @@index([expires])
+  @@map("user_sessions")
+}
+
+model UserLibrary {
+  id            Int      @id @default(autoincrement())
+  version       Int      @default(1)
+  userId        Int
+  doiMetadataId Int
+  createdAt     DateTime @default(now())
+
+  user                    User                                 @relation(fields: [userId], references: [id], onDelete: Cascade)
+  doiMetadata             DoiMetadata                          @relation(fields: [doiMetadataId], references: [id], onDelete: Cascade)
+  collectionAssociations  UserCollectionLibraryAssociation[]
+  annotations             UserLibraryAnnotation[]
+
+  @@unique([userId, doiMetadataId], name: "idx_user_library_unique")
+  @@index([userId])
+  @@index([doiMetadataId])
+  @@map("user_libraries")
+}
+
+model UserCollection {
+  id          Int      @id @default(autoincrement())
+  version     Int      @default(1)
+  userId      Int
+  name        String
+  description String?
+  color       String?
+  parentId    Int?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user                 User                                 @relation(fields: [userId], references: [id], onDelete: Cascade)
+  parent               UserCollection?                      @relation("ParentChild", fields: [parentId], references: [id], onDelete: Cascade)
+  children             UserCollection[]                     @relation("ParentChild")
+  libraryAssociations  UserCollectionLibraryAssociation[]
+
+  @@index([userId])
+  @@index([parentId])
+  @@map("user_collections")
+}

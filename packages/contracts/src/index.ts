@@ -1,9 +1,12 @@
 import { z } from 'zod';
+import jwt from 'jsonwebtoken';
 export type { DtoDoiMetadata } from './dtos.js';
 export * from './csl-citation.js';
 export * from './csl-data.js';
-import { initTRPC } from '@trpc/server';
-import { Context } from './context.js';
+export * from './context.js';
+
+import { initTRPC, TRPCError } from '@trpc/server';
+import { Context, createContext } from './context.js';
 import { CSLData, Prisma } from '@zinzot/db';
 import { type NameVariable } from './csl-data.js'
 import { DtoDoiMetadataSchema, DtoDoiMetadata } from './dtos.js';
@@ -12,8 +15,21 @@ import { DtoDoiMetadataSchema, DtoDoiMetadata } from './dtos.js';
 
 // Auth DTOs
 export const authGoogleSchema = z.object({
-  idToken: z.string(),
+  code: z.string(),
+  redirectUri: z.string(),
 });
+
+export const authOutputSchema = z.object({
+  token: z.string(),
+  user: z.object({
+    id: z.number().int(),
+    email: z.string(),
+    name: z.string().nullable(),
+    pictureUrl: z.string().nullable(),
+  }),
+});
+
+export type AuthOutput = z.infer<typeof authOutputSchema>;
 
 // Collection DTOs
 export const collectionSchema = z.object({
@@ -85,7 +101,7 @@ const checkExistsInput = z.object({
 export type CheckExistsInput = z.infer<typeof checkExistsInput>;
 
 const userDoiMetadata = DtoDoiMetadataSchema.extend({
-  inUserLibrary: z.boolean(),
+  inUserLibrary: z.boolean().default(false).optional(),
 });
 
 export type UserDoiMetadata = z.infer<typeof userDoiMetadata>;
@@ -105,28 +121,106 @@ export type SaveWebResultRequestInput = z.infer<typeof saveWebResultRequestInput
 
 
 export const t = initTRPC.context<Context>().create();
+export const publicProcedure = t.procedure;
+
+const isAuthed = t.middleware(async ({ ctx, next }) => {
+  if (!ctx.sessionToken) {
+    throw new TRPCError({
+      code: 'UNAUTHORIZED',
+      message: 'Missing or invalid Bearer token'
+    });
+  }
+
+  try {
+    const { sub } = jwt.verify(ctx.sessionToken, process.env.JWT_SECRET!, {
+      algorithms: [process.env.JWT_ALGORITHM! as jwt.Algorithm],
+    }) as { sub: string; exp: number; };
+
+    const userSession = await ctx.prisma.userSession.findFirst({
+      where: {
+        token: ctx.sessionToken,
+        expires: { gt: new Date() },
+        user: { email: sub },
+      },
+      include: { user: true },
+    });
+    
+    return next({
+      ctx: {
+        ...ctx,
+        user: userSession?.user,
+      },
+    });
+  } catch (error) {
+    throw new TRPCError({
+      code: 'UNAUTHORIZED',
+      message: 'Token verification failed'
+    });
+  }
+});
+export const protectedProcedure = t.procedure.use(isAuthed);
 
 export const appRouter = t.router({
   auth: t.router({
     google: t.procedure
       .input(authGoogleSchema)
-      .mutation(async ({ ctx }) => {
-        // // Authenticate with Google / Firebase
-        // // Find or create user
-        // const user = await ctx.prisma.user.upsert({
-        //   where: { email: 'user@example.com' }, // Mocked extraction from token
-        //   update: {},
-        //   create: { email: 'user@example.com', name: 'Google User' }
-        // });
-        // const session = await ctx.prisma.userSession.create({
-        //   data: {
-        //     userId: user.id,
-        //     token: `token_${Date.now()}`,
-        //     expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7)
-        //   }
-        // });
-        // return { token: session.token, user };
-        throw new Error('Not implemented');
+      .output(authOutputSchema)
+      .mutation(async ({ input, ctx }) => {
+        // Exchange authorization code for access token
+        const token: { access_token: string; expires_in: number; refresh_token: string; scope: string; token_type: string; id_token: string } = await fetch("https://oauth2.googleapis.com/token", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: new URLSearchParams({
+            client_id: process.env.GOOGLE_CLIENT_ID!,
+            client_secret: process.env.GOOGLE_CLIENT_SECRET!,
+            code: input.code,
+            grant_type: "authorization_code",
+            redirect_uri: input.redirectUri,
+          }),
+        })
+          .then(res => res.json() as any);
+
+        // Fetch user info from Google using the access token
+        const userInfo: { sub: string; name: string; given_name: string; family_name: string; picture: string; email: string; email_verified: boolean } = await fetch("https://www.googleapis.com/oauth2/v3/userinfo", {
+          headers: {
+            "Authorization": `Bearer ${token.access_token}`,
+          },
+        })
+          .then(res => res.json() as any)
+          .catch(err => {
+            console.error("Failed to fetch user info from Google:", err);
+          });
+
+        // Upsert user in the database
+        const dbUser = await ctx.prisma.user.upsert({
+          where: { email: userInfo.email },
+          update: {
+            name: userInfo.name,
+            pictureUrl: userInfo.picture,
+          },
+          create: {
+            email: userInfo.email,
+            name: userInfo.name,
+            pictureUrl: userInfo.picture,
+          },
+        });
+
+        // Create a session token (JWT) for the user
+        const expires = new Date(Date.now() + 1000 * 60 * parseInt(process.env.JWT_EXPIRE_MINUTES || '10080'));
+        const payload = { sub: userInfo.email, exp: Math.floor(expires.getTime() / 1000) };
+        const sessionToken = jwt.sign(payload, process.env.JWT_SECRET!, { algorithm: process.env.JWT_ALGORITHM! as jwt.Algorithm });
+
+        await ctx.prisma.userSession.create({
+          data: {
+            userId: dbUser.id,
+            token: sessionToken,
+            expires: expires,
+          },
+        });
+
+        return { token: sessionToken, user: dbUser };
       }),
     me: t.procedure
       .query(async () => { throw new Error('Not implemented'); }),
@@ -161,11 +255,11 @@ export const appRouter = t.router({
   }),
 
   references: t.router({
-    checkExists: t.procedure
+    checkExists: protectedProcedure
       .input(checkExistsInput)
       .output(userDoiMetadata.array())
       .mutation(async ({ input, ctx }) => {
-        const dictFoundReferences = new Map<string, CSLData>();
+        const dictFoundReferences = new Map<string, CSLData & { inUserLibrary?: boolean }>();
 
         // Check by DOI
         const dois = input.map(item => item.doi).filter((d): d is string => !!d);
@@ -215,31 +309,26 @@ export const appRouter = t.router({
           results.forEach(ref => dictFoundReferences.set(ref.id, ref));
         }
 
-        const foundReferences = Array.from(dictFoundReferences.values()).map(ref => ({
-          ...ref,
-          inUserLibrary: false
-        }));
+        // Check whether found references are in user's library (if user is authenticated)
+        if (ctx.user) {
+          const userLibraries = await ctx.prisma.userLibrary.findMany({
+            where: {
+              userId: ctx.user.id,
+              cslDataId: {
+                in: Array.from(dictFoundReferences.keys())
+              }
+            }
+          });
 
-        // Context user check (assuming ctx.user could be passed)
-        const user = (ctx as any).user;
-        // if (user) {
-        //   const userLibraries = await ctx.prisma.userLibrary.findMany({
-        //     where: {
-        //       userId: user.id,
-        //       cSLDataId: {
-        //         in: foundReferences.map(ref => ref.id)
-        //       }
-        //     }
-        //   });
+          userLibraries.forEach(ul => {
+            const ref = dictFoundReferences.get(ul.cslDataId);
+            if (ref) {
+              dictFoundReferences.set(ref.id, { ...ref, inUserLibrary: true });
+            }
+          });
+        }
 
-        //   foundReferences.forEach(ref => {
-        //     if (userLibraries.some(ul => ul.cSLDataId === ref.id)) {
-        //       ref.inUserLibrary = true;
-        //     }
-        //   });
-        // }
-
-        return foundReferences.map(ref => {
+        return Array.from(dictFoundReferences.values()).map(ref => {
           // Convert ref to DtoDoiMetadata
           return {
             inUserLibrary: ref.inUserLibrary || false,
@@ -251,7 +340,7 @@ export const appRouter = t.router({
           };
         });
       }),
-    save: t.procedure
+    save: protectedProcedure
       .input(saveWebResultRequestInput)
       .mutation(async ({ input, ctx }) => {
         const convertNameVariable = (c: NameVariable) => ({
@@ -436,19 +525,44 @@ export const appRouter = t.router({
         }));
 
         try {
-          await Promise.all(
+          const cslData = await Promise.all(
             createData.map(async (data) => {
-               try {
-                 const id = data.id as string;
-                 const exists = await ctx.prisma.cSLData.findUnique({ where: { id } });
-                 if (!exists) {
-                   await ctx.prisma.cSLData.create({ data });
-                 }
-               } catch (e) {
-                 console.error(`Failed to save CSLData for ID ${data.id}:`, e);
-               }
+              try {
+                const id = data.id as string;
+                const exists = await ctx.prisma.cSLData.findUnique({ where: { id } });
+                if (!exists) {
+                  return await ctx.prisma.cSLData.create({ data });
+                } else {
+                  return exists;
+                }
+              } catch (e) {
+                console.error(`Failed to save CSLData for ID ${data.id}:`, e);
+              }
             })
           );
+
+          // Upsert cslData and connect to user's library if authenticated
+          if (ctx.user) {
+            await Promise.all(
+              cslData.map(async (data) => {
+                if (data) {
+                  await ctx.prisma.userLibrary.upsert({
+                    where: {
+                      userId_cslDataId: {
+                        userId: ctx.user!.id,
+                        cslDataId: data.id,
+                      },
+                    },
+                    update: {},
+                    create: {
+                      userId: ctx.user!.id,
+                      cslDataId: data.id,
+                    },
+                  });
+                }
+              })
+            );
+          }
         } catch (error) {
           console.error("Error saving CSLData:", error);
           throw new Error('Failed to save reference data');
@@ -466,6 +580,11 @@ export const appRouter = t.router({
     checkExists: t.procedure
       .input(z.object({ hash: z.string() }))
       .query(async () => { throw new Error('Not implemented'); }),
+    getPutPresignedUrl: t.procedure
+      .input(z.object({ name: z.string(), mimeType: z.string() }))
+      .query(async ({ input, ctx }) => {
+        return ctx.s3.client.presignedPutObject(ctx.s3.bucketName, input.name, 60 * 60);
+      }),
   }),
 });
 

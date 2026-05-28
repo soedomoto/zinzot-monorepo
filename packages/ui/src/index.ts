@@ -1,5 +1,6 @@
 // Styles
 import './index.css'
+import 'webextension-polyfill';
 
 // Components
 export * from './components'

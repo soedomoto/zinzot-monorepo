@@ -8,9 +8,10 @@ export default defineConfig({
     plugins: [tailwindcss()],
   }),
   manifest: {
+    key: 'kmklplmnjkpnmkljplmnkjlpnmkljpmh',
     name: 'Zinzot',
     description: 'Zinzot Extension',
-    permissions: ['storage', 'activeTab', 'scripting'],
+    permissions: ['identity', 'storage', 'activeTab', 'scripting'],
     action: {},
     web_accessible_resources: [
       {

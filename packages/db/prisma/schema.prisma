@@ -10,9 +10,9 @@ datasource db {
 
 enum CSLType {
   article
-  article_journal      @map("article-journal")
-  article_magazine     @map("article-magazine")
-  article_newspaper    @map("article-newspaper")
+  article_journal        @map("article-journal")
+  article_magazine       @map("article-magazine")
+  article_newspaper      @map("article-newspaper")
   bill
   book
   broadcast
@@ -22,8 +22,8 @@ enum CSLType {
   dataset
   document
   entry
-  entry_dictionary     @map("entry-dictionary")
-  entry_encyclopedia   @map("entry-encyclopedia")
+  entry_dictionary       @map("entry-dictionary")
+  entry_encyclopedia     @map("entry-encyclopedia")
   event
   figure
   graphic
@@ -36,17 +36,17 @@ enum CSLType {
   motion_picture
   musical_score
   pamphlet
-  paper_conference     @map("paper-conference")
+  paper_conference       @map("paper-conference")
   patent
   performance
   periodical
   personal_communication
   post
-  post_weblog          @map("post-weblog")
+  post_weblog            @map("post-weblog")
   regulation
   report
   review
-  review_book          @map("review-book")
+  review_book            @map("review-book")
   software
   song
   speech
@@ -60,118 +60,117 @@ enum CSLType {
 // LEVEL 1: Main Bibliography/Citation Model
 // -----------------------------------------------------------------------------
 model CSLData {
-  id                         String   @id // Coerced from string | number
-  type                       CSLType
+  id   String  @id // Coerced from string | number
+  type CSLType
 
   // --- Simple Scalars ---
-  abstract                   String?
-  annote                     String?
-  archive                    String?
-  archivePlace               String?  @map("archive-place")
-  archiveCollection          String?  @map("archive_collection")
-  archiveLocation            String?  @map("archive_location")
-  authority                  String?
-  callNumber                 String?  @map("call-number")
-  categories                 String[] // Array of strings natively supported in Postgres
-  chapterNumber              String?  @map("chapter-number") // Coerced number | string
-  citationKey                String?  @map("citation-key")
-  citationLabel              String?  @map("citation-label")
-  citationNumber             String?  @map("citation-number")
-  collectionNumber           String?  @map("collection-number")
-  collectionTitle            String?  @map("collection-title")
-  containerTitle             String?  @map("container-title")
-  containerTitleShort        String?  @map("container-title-short")
-  dimensions                 String?
-  division                   String?
-  DOI                        String?
-  edition                    String?
-  event                      String?
-  eventPlace                 String?  @map("event-place")
-  eventTitle                 String?  @map("event-title")
-  firstReferenceNoteNumber   String?  @map("first-reference-note-number")
-  genre                      String?
-  ISBN                       String?
-  ISSN                       String?
-  issue                      String?
-  journalAbbreviation        String?
-  jurisdiction               String?
-  keyword                    String?
-  language                   String?
-  locator                    String?
-  medium                     String?
-  note                       String?
-  number                     String?
-  numberOfPages              String?  @map("number-of-pages")
-  numberOfVolumes            String?  @map("number-of-volumes")
-  originalPublisher          String?  @map("original-publisher")
-  originalPublisherPlace     String?  @map("original-publisher-place")
-  originalTitle              String?  @map("original-title")
-  page                       String?
-  pageFirst                  String?  @map("page-first")
-  part                       String?
-  partTitle                  String?  @map("part-title")
-  PMCID                      String?
-  PMID                       String?
-  printing                   String?
-  publisher                  String?
-  publisherPlace             String?  @map("publisher-place")
-  references                 String?
-  reviewedGenre              String?  @map("reviewed-genre")
-  reviewedTitle              String?  @map("reviewed-title")
-  scale                      String?
-  section                    String?
-  shortTitle                 String?
-  source                     String?
-  status                     String?
-  supplement                 String?
-  title                      String?
-  titleShort                 String?  @map("title-short")
-  URL                        String?
-  version                    String?
-  volume                     String?
-  volumeTitle                String?  @map("volume-title")
-  volumeTitleShort           String?  @map("volume-title-short")
-  yearSuffix                 String?  @map("year-suffix")
+  abstract                 String?
+  annote                   String?
+  archive                  String?
+  archivePlace             String?  @map("archive-place")
+  archiveCollection        String?  @map("archive_collection")
+  archiveLocation          String?  @map("archive_location")
+  authority                String?
+  callNumber               String?  @map("call-number")
+  categories               String[] // Array of strings natively supported in Postgres
+  chapterNumber            String?  @map("chapter-number") // Coerced number | string
+  citationKey              String?  @map("citation-key")
+  citationLabel            String?  @map("citation-label")
+  citationNumber           String?  @map("citation-number")
+  collectionNumber         String?  @map("collection-number")
+  collectionTitle          String?  @map("collection-title")
+  containerTitle           String?  @map("container-title")
+  containerTitleShort      String?  @map("container-title-short")
+  dimensions               String?
+  division                 String?
+  DOI                      String?
+  edition                  String?
+  event                    String?
+  eventPlace               String?  @map("event-place")
+  eventTitle               String?  @map("event-title")
+  firstReferenceNoteNumber String?  @map("first-reference-note-number")
+  genre                    String?
+  ISBN                     String?
+  ISSN                     String?
+  issue                    String?
+  journalAbbreviation      String?
+  jurisdiction             String?
+  keyword                  String?
+  language                 String?
+  locator                  String?
+  medium                   String?
+  note                     String?
+  number                   String?
+  numberOfPages            String?  @map("number-of-pages")
+  numberOfVolumes          String?  @map("number-of-volumes")
+  originalPublisher        String?  @map("original-publisher")
+  originalPublisherPlace   String?  @map("original-publisher-place")
+  originalTitle            String?  @map("original-title")
+  page                     String?
+  pageFirst                String?  @map("page-first")
+  part                     String?
+  partTitle                String?  @map("part-title")
+  PMCID                    String?
+  PMID                     String?
+  printing                 String?
+  publisher                String?
+  publisherPlace           String?  @map("publisher-place")
+  references               String?
+  reviewedGenre            String?  @map("reviewed-genre")
+  reviewedTitle            String?  @map("reviewed-title")
+  scale                    String?
+  section                  String?
+  shortTitle               String?
+  source                   String?
+  status                   String?
+  supplement               String?
+  title                    String?
+  titleShort               String?  @map("title-short")
+  URL                      String?
+  version                  String?
+  volume                   String?
+  volumeTitle              String?  @map("volume-title")
+  volumeTitleShort         String?  @map("volume-title-short")
+  yearSuffix               String?  @map("year-suffix")
 
   // --- Level 3 Complex Sub-Types (Kept as JSON) ---
-  accessed                   Json?    // DateContentModel
-  availableDate              Json?    @map("available-date") 
-  custom                     Json?    // Record<string, any>
-  eventDate                  Json?    @map("event-date") 
-  issued                     Json?    
-  originalDate               Json?    @map("original-date") 
-  submitted                  Json?    
+  accessed      Json? // DateContentModel
+  availableDate Json? @map("available-date")
+  custom        Json? // Record<string, any>
+  eventDate     Json? @map("event-date")
+  issued        Json?
+  originalDate  Json? @map("original-date")
+  submitted     Json?
 
   // --- Level 2 Relational Sub-Models (NameVariables) ---
-  author                     NameVariable[] @relation("author")
-  chair                      NameVariable[] @relation("chair")
-  collectionEditor           NameVariable[] @relation("collection-editor")
-  compiler                   NameVariable[] @relation("compiler")
-  composer                   NameVariable[] @relation("composer")
-  containerAuthor            NameVariable[] @relation("container-author")
-  contributor                NameVariable[] @relation("contributor")
-  curator                    NameVariable[] @relation("curator")
-  director                   NameVariable[] @relation("director")
-  editor                     NameVariable[] @relation("editor")
-  editorialDirector          NameVariable[] @relation("editorial-director")
-  executiveProducer          NameVariable[] @relation("executive-producer")
-  guest                      NameVariable[] @relation("guest")
-  host                       NameVariable[] @relation("host")
-  illustrator                NameVariable[] @relation("illustrator")
-  interviewer                NameVariable[] @relation("interviewer")
-  narrator                   NameVariable[] @relation("narrator")
-  organizer                  NameVariable[] @relation("organizer")
-  originalAuthor             NameVariable[] @relation("original-author")
-  performer                  NameVariable[] @relation("performer")
-  producer                   NameVariable[] @relation("producer")
-  recipient                  NameVariable[] @relation("recipient")
-  reviewedAuthor             NameVariable[] @relation("reviewed-author")
-  scriptWriter               NameVariable[] @relation("script-writer")
-  seriesCreator              NameVariable[] @relation("series-creator")
-  translator                 NameVariable[] @relation("translator")
-  attachments                CSLDataAttachment[] @relation("attachments")
-
-  @@map("csl_data")
+  author            NameVariable[]      @relation("author")
+  chair             NameVariable[]      @relation("chair")
+  collectionEditor  NameVariable[]      @relation("collection-editor")
+  compiler          NameVariable[]      @relation("compiler")
+  composer          NameVariable[]      @relation("composer")
+  containerAuthor   NameVariable[]      @relation("container-author")
+  contributor       NameVariable[]      @relation("contributor")
+  curator           NameVariable[]      @relation("curator")
+  director          NameVariable[]      @relation("director")
+  editor            NameVariable[]      @relation("editor")
+  editorialDirector NameVariable[]      @relation("editorial-director")
+  executiveProducer NameVariable[]      @relation("executive-producer")
+  guest             NameVariable[]      @relation("guest")
+  host              NameVariable[]      @relation("host")
+  illustrator       NameVariable[]      @relation("illustrator")
+  interviewer       NameVariable[]      @relation("interviewer")
+  narrator          NameVariable[]      @relation("narrator")
+  organizer         NameVariable[]      @relation("organizer")
+  originalAuthor    NameVariable[]      @relation("original-author")
+  performer         NameVariable[]      @relation("performer")
+  producer          NameVariable[]      @relation("producer")
+  recipient         NameVariable[]      @relation("recipient")
+  reviewedAuthor    NameVariable[]      @relation("reviewed-author")
+  scriptWriter      NameVariable[]      @relation("script-writer")
+  seriesCreator     NameVariable[]      @relation("series-creator")
+  translator        NameVariable[]      @relation("translator")
+  attachments       CSLDataAttachment[] @relation("attachments")
+  UserLibrary       UserLibrary[]
 
   // --- Indicies ---
   // Single Identifier Indexes (Highly critical for unique lookups)
@@ -179,22 +178,20 @@ model CSLData {
   @@index([PMID])
   @@index([ISBN])
   @@index([citationKey])
-  
   // Filtering Indexes
   @@index([type])
-  
   // Composite Indexes for common search patterns
-  @@index([title, type])               // Searching a specific item type by title
-  @@index([containerTitle, volume])    // Identifying a specific journal issue
+  @@index([title, type]) // Searching a specific item type by title
+  @@index([containerTitle, volume]) // Identifying a specific journal issue
+  @@map("csl_data")
 }
-
 
 // -----------------------------------------------------------------------------
 // LEVEL 2: Relational Contributor Model
 // -----------------------------------------------------------------------------
 model NameVariable {
-  id                  String  @id @default(cuid())
-  
+  id String @id @default(cuid())
+
   // --- Simple Scalars ---
   family              String?
   given               String?
@@ -204,61 +201,108 @@ model NameVariable {
   suffix              String?
 
   // --- Coerced Scalars (boolean | number | string) ---
-  commaSuffix         String? @map("comma-suffix")      
-  parseNames          String? @map("parse-names")       
-  staticOrdering      String? @map("static-ordering")   
+  commaSuffix    String? @map("comma-suffix")
+  parseNames     String? @map("parse-names")
+  staticOrdering String? @map("static-ordering")
 
   // --- Reverse Relations Back to CSLData ---
-  cslAuthor             CSLData[] @relation("author")
-  cslChair              CSLData[] @relation("chair")
-  cslCollectionEditor   CSLData[] @relation("collection-editor")
-  cslCompiler           CSLData[] @relation("compiler")
-  cslComposer           CSLData[] @relation("composer")
-  cslContainerAuthor    CSLData[] @relation("container-author")
-  cslContributor        CSLData[] @relation("contributor")
-  cslCurator            CSLData[] @relation("curator")
-  cslDirector           CSLData[] @relation("director")
-  cslEditor             CSLData[] @relation("editor")
-  cslEditorialDirector  CSLData[] @relation("editorial-director")
-  cslExecutiveProducer  CSLData[] @relation("executive-producer")
-  cslGuest              CSLData[] @relation("guest")
-  cslHost               CSLData[] @relation("host")
-  cslIllustrator        CSLData[] @relation("illustrator")
-  cslInterviewer        CSLData[] @relation("interviewer")
-  cslNarrator           CSLData[] @relation("narrator")
-  cslOrganizer          CSLData[] @relation("organizer")
-  cslOriginalAuthor     CSLData[] @relation("original-author")
-  cslPerformer          CSLData[] @relation("performer")
-  cslProducer           CSLData[] @relation("producer")
-  cslRecipient          CSLData[] @relation("recipient")
-  cslReviewedAuthor     CSLData[] @relation("reviewed-author")
-  cslScriptWriter       CSLData[] @relation("script-writer")
-  cslSeriesCreator      CSLData[] @relation("series-creator")
-  cslTranslator         CSLData[] @relation("translator")
-
-  @@map("name_variable")
+  cslAuthor            CSLData[] @relation("author")
+  cslChair             CSLData[] @relation("chair")
+  cslCollectionEditor  CSLData[] @relation("collection-editor")
+  cslCompiler          CSLData[] @relation("compiler")
+  cslComposer          CSLData[] @relation("composer")
+  cslContainerAuthor   CSLData[] @relation("container-author")
+  cslContributor       CSLData[] @relation("contributor")
+  cslCurator           CSLData[] @relation("curator")
+  cslDirector          CSLData[] @relation("director")
+  cslEditor            CSLData[] @relation("editor")
+  cslEditorialDirector CSLData[] @relation("editorial-director")
+  cslExecutiveProducer CSLData[] @relation("executive-producer")
+  cslGuest             CSLData[] @relation("guest")
+  cslHost              CSLData[] @relation("host")
+  cslIllustrator       CSLData[] @relation("illustrator")
+  cslInterviewer       CSLData[] @relation("interviewer")
+  cslNarrator          CSLData[] @relation("narrator")
+  cslOrganizer         CSLData[] @relation("organizer")
+  cslOriginalAuthor    CSLData[] @relation("original-author")
+  cslPerformer         CSLData[] @relation("performer")
+  cslProducer          CSLData[] @relation("producer")
+  cslRecipient         CSLData[] @relation("recipient")
+  cslReviewedAuthor    CSLData[] @relation("reviewed-author")
+  cslScriptWriter      CSLData[] @relation("script-writer")
+  cslSeriesCreator     CSLData[] @relation("series-creator")
+  cslTranslator        CSLData[] @relation("translator")
 
   // --- Indices ---
   // Composite index for fast author searches (Last Name + First Name)
   @@index([family, given])
   // Index for organization/institution contributors
   @@index([literal])
+  @@map("name_variable")
 }
 
 // ==============================================================================
 
 model CSLDataAttachment {
-  id                  Int     @id @default(autoincrement())
-  version             Int     @default(1)
-  cslDataId           String
-  url                 String?
-  title               String?
-  mimeType            String?
-  hash                String?
-  content             String?
+  id        Int     @id @default(autoincrement())
+  version   Int     @default(1)
+  cslDataId String
+  url       String?
+  title     String?
+  mimeType  String?
+  hash      String?
+  content   String?
 
   cslData CSLData @relation("attachments", fields: [cslDataId], references: [id], onDelete: Cascade)
 
   @@index([hash])
   @@map("csl_data_attachments")
+}
+
+// ==============================================================================
+// Users and Auth Models
+// ==============================================================================
+
+model User {
+  id         Int      @id @default(autoincrement())
+  email      String   @unique
+  name       String?
+  pictureUrl String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt @default(now())
+
+  sessions    UserSession[]
+  UserLibrary UserLibrary[]
+
+  @@map("users")
+}
+
+model UserSession {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  token     String   @unique
+  expires   DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("user_sessions")
+}
+
+model UserLibrary {
+  id        Int      @id @default(autoincrement())
+  version   Int      @default(1)
+  userId    Int
+  cslDataId String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt @default(now())
+
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  cslData CSLData @relation(fields: [cslDataId], references: [id], onDelete: Cascade)
+
+  @@unique([id, version])
+  @@unique([userId, cslDataId])
+  @@map("user_libraries")
 }

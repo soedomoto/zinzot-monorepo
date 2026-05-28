@@ -116,7 +116,7 @@ export const CSLDataSchema = z.object({
     "genre": z.string().optional(),
     "guest": z.array(NameVariableSchema).optional(),
     "host": z.array(NameVariableSchema).optional(),
-    "id": z.union([z.number(), z.string()]),
+    "id": z.union([z.number(), z.string()]).optional(),
     "illustrator": z.array(NameVariableSchema).optional(),
     "interviewer": z.array(NameVariableSchema).optional(),
     "ISBN": z.string().optional(),

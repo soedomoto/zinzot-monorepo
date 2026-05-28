@@ -16,6 +16,8 @@
     "@trpc/server": "^11.17.0",
     "@zinzot/db": "workspace:*",
     "comctx": "^1.6.1",
+    "jsonwebtoken": "^9.0.3",
+    "minio": "^8.0.7",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
     "tailwindcss": "^4.3.0",
@@ -23,6 +25,7 @@
     "zod-from-json-schema": "^0.1.0"
   },
   "devDependencies": {
+    "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^25.9.1",
     "tsx": "^4.22.0",
     "typescript": "^5.9.3"

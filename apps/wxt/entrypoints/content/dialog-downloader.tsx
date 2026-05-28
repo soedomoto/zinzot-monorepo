@@ -38,7 +38,9 @@ export type DialogDownloaderProps = {
   translator: TranslatorFunctionsType
 };
 
-const state = atom<{
+const visibleAtom = atom(true);
+const authStateAtom = atom<{ loading: boolean; data: AuthResponse | null }>({ loading: false, data: null });
+const referencesStateAtom = atom<{
   type?: string | true | null;
   searchResults?: Record<string, string>;
   doWebPayload?: { sourceUrl: string; doiMetadata: DtoDoiMetadata }[];
@@ -46,104 +48,37 @@ const state = atom<{
   savingItemsIdx?: number[];
 }>({});
 
-export default function DialogDownloader({ wxtApi, api, translator }: DialogDownloaderProps) {
-  const [auth, setAuth] = useState<{ loading: boolean; data: AuthResponse | null }>({ loading: false, data: null });
-  const [visible, setVisible] = useState(true);
-  const [stateValue, setStateValue] = useAtom(state);
-
-  const selectedCount = stateValue?.selectedItemsIdx?.length || 0;
-  const hasSelection = selectedCount > 0;
-
-  useEffect(() => {
-    setAuth((current) => ({ ...current, loading: false }));
-  }, []);
-
-  useEffect(() => {
-    const type = translator?.detectWeb?.(document, window.location.href) || null;
-    if (type) {
-      console.log(`Zinzot Web Importer: Detected type ${type}`);
-      setStateValue(current => ({ ...current, type }));
-    } else {
-      console.log("Zinzot Web Importer: No type detected");
-      return;
-    }
-  }, [translator?.detectWeb, document, window.location.href]);
-
-  useEffect(() => {
-    (async () => {
-      if (stateValue.type) {
-        let searchResults: Record<string, string> = {};
-        if (stateValue.type == 'multiple') {
-          searchResults = translator?.getSearchResults?.(document) || {};
-        } else {
-          searchResults[window.location.href] = text(document, 'title') || 'Untitled';
-        }
-
-        const eRefs = await api.referencesCheckExists(Object.keys(searchResults).map(url => ({ url })));
-
-        let doWebPayload: { sourceUrl: string; doiMetadata: DtoDoiMetadata }[] = [];
-        for (const url in searchResults) {
-          let eRef = eRefs?.find(er => er.URL === url);
-          if (eRef && !eRef?.inUserLibrary) eRef.id = undefined; // remove id if not in user library
-
-          doWebPayload.push({
-            sourceUrl: url,
-            doiMetadata: eRef ? eRef : {
-              title: searchResults[url],
-              URL: url,
-              inUserLibrary: false,
-            },
-          });
-        }
-
-        setStateValue(({ type, ...current }) => ({ type, ...current, searchResults, doWebPayload }));
-      }
-    })();
-  }, [stateValue.type]);
-
-  const selectAllEligible = () => {
-    setStateValue((current) => ({
-      ...current,
-      selectedItemsIdx: (current?.doWebPayload || [])
-        .map((item, index) => (!item?.doiMetadata?.DOI ? index : -1))
-        .filter((index) => index !== -1)
-    }));
-  }
-
-  const canSelectAll = useMemo(
-    () => (stateValue?.doWebPayload || []).some((item) => !item?.doiMetadata?.DOI),
-    [stateValue?.doWebPayload]
-  );
+function useAuth({ api }: DialogDownloaderProps) {
+  const [, setAuthState] = useAtom(authStateAtom);
 
   const handleLogin = async () => {
-    setAuth({ loading: true, data: null });
+    setAuthState({ loading: true, data: null });
     try {
       const response = await api.authGoogle();
-      setAuth({ loading: false, data: response ?? null });
+      setAuthState({ loading: false, data: response ?? null });
     } catch (error) {
-      setAuth({ loading: false, data: null });
+      void error;
+      console.error("Authentication failed:", error);
+    } finally {
+      setAuthState(current => ({ ...current, loading: false }));
     }
   };
 
-  const handleToggleSelect = (index: number, checked: boolean) => {
-    if (checked) {
-      setStateValue((current) => ({
-        ...current,
-        selectedItemsIdx: [...(current?.selectedItemsIdx || []), index],
-      }));
-      return;
-    }
-    setStateValue((current) => ({
-      ...current,
-      selectedItemsIdx: (current?.selectedItemsIdx || []).filter((item) => item !== index),
-    }));
-  };
+  useEffect(() => {
+    handleLogin();
+  }, []);
+
+  return { handleLogin };
+}
+
+function useReferences({ api, translator }: DialogDownloaderProps) {
+  const [referencesState, setReferencesState] = useAtom(referencesStateAtom);
 
   const saveSelectedItems = async (selectedItemsIdx: number[]) => {
-    setStateValue(({ savingItemsIdx, ...current }) => ({ ...current, savingItemsIdx: [...(savingItemsIdx || []), ...selectedItemsIdx] }));
+    setReferencesState(({ savingItemsIdx, ...current }) => ({ ...current, savingItemsIdx: [...(savingItemsIdx || []), ...selectedItemsIdx] }));
     await translator?.doWeb?.(
       document, window.location.href,
-      selectedItemsIdx.map((i) => (stateValue?.doWebPayload || [])[i]),
+      selectedItemsIdx.map((i) => (referencesState?.doWebPayload || [])[i]),
       async (item: DoWebResultType[number], index?: number) => {
         item.sourceUrl = new URL(item.sourceUrl || window.location.href, window.location.href).toString();
         for (const att of item.doiMetadata?.attachments || []) {
@@ -157,11 +92,25 @@ export default function DialogDownloader({ wxtApi, api, translator }: DialogDown
             if (response.ok && response.headers.get('content-type')?.startsWith('application/pdf')) {
               const content = new Uint8Array(await response.arrayBuffer());
               const hash = await hashPdfContent(content);
-              const b64Content = uint8ArrayToBase64(content);
 
               att.hash = hash;
-              // att.content = b64Content;
               att.mimeType = 'application/pdf';
+
+              try {
+                await api.getPutAttachmentPresignedUrl(`${hash}.pdf`, 'application/pdf')
+                  .then((url) => {
+                    return fetch(url, {
+                      method: 'PUT',
+                      headers: {
+                        'Content-Type': 'application/pdf',
+                      },
+                      body: content,
+                    });
+                  });
+                att.url = `s3://${hash}.pdf`;
+              } catch (e) {
+                console.error("Failed to upload attachment:", att.url, e);
+              }
             }
           } catch (e) {
             console.error("Failed to Pre-fetch attachment:", att.url, e);
@@ -175,16 +124,101 @@ export default function DialogDownloader({ wxtApi, api, translator }: DialogDown
                   }],
                 });
               } catch (e) {
-                void(e);
+                void (e);
                 console.error("Failed to save reference for item:", item, e);
               }
             }
 
-            setStateValue(({ savingItemsIdx, ...current }) => ({ ...current, savingItemsIdx: (savingItemsIdx || []).filter(i => i !== selectedItemsIdx[index || 0]) }));
+            setReferencesState(({ savingItemsIdx, ...current }) => ({ ...current, savingItemsIdx: (savingItemsIdx || []).filter(i => i !== selectedItemsIdx[index || 0]) }));
           }
         }
       }
     );
+  };
+
+  useEffect(() => {
+    const type = translator?.detectWeb?.(document, window.location.href) || null;
+    if (type) {
+      console.log(`Zinzot Web Importer: Detected type ${type}`);
+      setReferencesState(current => ({ ...current, type }));
+    } else {
+      console.log("Zinzot Web Importer: No type detected");
+      return;
+    }
+  }, [translator?.detectWeb, document, window.location.href]);
+
+  useEffect(() => {
+    (async () => {
+      if (referencesState.type) {
+        let searchResults: Record<string, string> = {};
+        if (referencesState.type == 'multiple') {
+          searchResults = translator?.getSearchResults?.(document) || {};
+        } else {
+          searchResults[window.location.href] = text(document, 'title') || 'Untitled';
+        }
+
+        const eRefs = await api.referencesCheckExists(Object.keys(searchResults).map(url => ({ url })));
+
+        let doWebPayload: { sourceUrl: string; doiMetadata: DtoDoiMetadata }[] = [];
+        for (const url in searchResults) {
+          let eRef = eRefs?.find(er => er.URL === url);
+          if (eRef && !eRef?.inUserLibrary) eRef.id = undefined;
+
+          doWebPayload.push({
+            sourceUrl: url,
+            doiMetadata: eRef ? eRef : {
+              title: searchResults[url],
+              URL: url,
+              inUserLibrary: false,
+            },
+          });
+        }
+
+        setReferencesState(({ type, ...current }) => ({ type, ...current, searchResults, doWebPayload }));
+      }
+    })();
+  }, [referencesState.type]);
+
+  return { saveSelectedItems };
+}
+
+export default function DialogDownloader({ wxtApi, api, translator }: DialogDownloaderProps) {
+  const { handleLogin } = useAuth({ wxtApi, api, translator });
+  const { saveSelectedItems } = useReferences({ wxtApi, api, translator });
+
+  const [authState] = useAtom(authStateAtom);
+  const [visible, setVisible] = useAtom(visibleAtom);
+  const [referencesState, setReferencesState] = useAtom(referencesStateAtom);
+
+  const selectedCount = referencesState?.selectedItemsIdx?.length || 0;
+  const hasSelection = selectedCount > 0;
+
+  const selectAllEligible = () => {
+    setReferencesState((current) => ({
+      ...current,
+      selectedItemsIdx: (current?.doWebPayload || [])
+        .map((item, index) => (!item?.doiMetadata?.DOI ? index : -1))
+        .filter((index) => index !== -1)
+    }));
+  }
+
+  const canSelectAll = useMemo(
+    () => (referencesState?.doWebPayload || []).some((item) => !item?.doiMetadata?.DOI),
+    [referencesState?.doWebPayload]
+  );
+
+  const handleToggleSelect = (index: number, checked: boolean) => {
+    if (checked) {
+      setReferencesState((current) => ({
+        ...current,
+        selectedItemsIdx: [...(current?.selectedItemsIdx || []), index],
+      }));
+      return;
+    }
+    setReferencesState((current) => ({
+      ...current,
+      selectedItemsIdx: (current?.selectedItemsIdx || []).filter((item) => item !== index),
+    }));
   };
 
   return visible ? (
@@ -194,10 +228,10 @@ export default function DialogDownloader({ wxtApi, api, translator }: DialogDown
           <div className="flex items-center justify-between gap-3 w-full">
             <CardTitle className="flex-1">Zinzot Web Importer</CardTitle>
             <div className="flex flex-wrap items-center gap-1 md:flex-row">
-              {auth.data?.user ? (
+              {authState.data?.user ? (
                 <>
                   <Avatar size="sm">
-                    <AvatarImage src={(auth.data.user as { picture?: string }).picture} />
+                    {authState.data.user?.pictureUrl && <AvatarImage src={authState.data.user?.pictureUrl} />}
                     <AvatarFallback>U</AvatarFallback>
                   </Avatar>
                   <Button size="icon-xs" variant="outline" aria-label="Open library" className="cursor-pointer" onClick={() => wxtApi.openOptions()}>
@@ -205,7 +239,7 @@ export default function DialogDownloader({ wxtApi, api, translator }: DialogDown
                   </Button>
                 </>
               ) : (
-                <Button size="icon-xs" variant="outline" disabled={auth.loading} onClick={handleLogin} aria-label="Log in">
+                <Button size="icon-xs" variant="outline" disabled={authState.loading} onClick={handleLogin} aria-label="Log in">
                   <IconUser />
                 </Button>
               )}
@@ -220,14 +254,14 @@ export default function DialogDownloader({ wxtApi, api, translator }: DialogDown
         <CardContent>
           <ScrollArea className="w-full h-96">
             <ItemGroup className="w-full gap-0">
-              {(stateValue?.doWebPayload || []).map((item, index) => (
+              {(referencesState?.doWebPayload || []).map((item, index) => (
                 <Item key={index} className="px-0">
                   <ItemMedia variant="icon">
                     {item?.doiMetadata?.id ? (
                       <IconCheck className="text-emerald-600" />
                     ) : (
                       <Checkbox
-                        checked={(stateValue?.selectedItemsIdx || []).includes(index)}
+                        checked={(referencesState?.selectedItemsIdx || []).includes(index)}
                         onCheckedChange={(checked) =>
                           handleToggleSelect(index, checked === true)
                         }
@@ -242,7 +276,7 @@ export default function DialogDownloader({ wxtApi, api, translator }: DialogDown
                   </ItemContent>
                   <ItemActions className="self-start">
                     {
-                      stateValue?.savingItemsIdx?.includes(index) ? (
+                      referencesState?.savingItemsIdx?.includes(index) ? (
                         <Spinner data-icon="inline-start" fontSize="sm" className="relative right-2 top-1" />
                       ) : (
                         <Button variant="ghost" size="icon-sm" className="rounded-full relative -top-1" onClick={() => saveSelectedItems([index])}>
@@ -260,10 +294,10 @@ export default function DialogDownloader({ wxtApi, api, translator }: DialogDown
           <div className="flex flex-wrap items-center gap-2">
             <label className="flex items-center gap-2 text-sm">
               <Checkbox
-                checked={canSelectAll && (stateValue?.selectedItemsIdx || []).length > 0}
+                checked={canSelectAll && (referencesState?.selectedItemsIdx || []).length > 0}
                 onCheckedChange={(checked) => {
                   if (checked === true) selectAllEligible();
-                  else setStateValue((current) => ({ ...current, selectedItemsIdx: [] }));
+                  else setReferencesState((current) => ({ ...current, selectedItemsIdx: [] }));
                 }}
                 disabled={!canSelectAll}
               />
@@ -277,7 +311,7 @@ export default function DialogDownloader({ wxtApi, api, translator }: DialogDown
             variant="secondary"
             size="sm"
             onClick={async () => {
-              saveSelectedItems(stateValue?.selectedItemsIdx || []);
+              saveSelectedItems(referencesState?.selectedItemsIdx || []);
             }}
             disabled={!hasSelection}
           >
@@ -727,7 +761,7 @@ export default function DialogDownloader({ wxtApi, api, translator }: DialogDown
           <IconZeppelin className="size-8" />
         </Button>
         <Badge variant="destructive" className="absolute -bottom-1 -right-1">
-          {(stateValue?.doWebPayload || []).length}
+          {(referencesState?.doWebPayload || []).length}
         </Badge>
       </div>
     </div>
